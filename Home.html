@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lomit · Revenue engineering</title>
+    <link rel="icon" type="image/png" href="favicon-16x16.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s;
+        }
+
+        /* Light theme (default) */
+        body.light-mode {
+            --bg: #ffffff;
+            --surface: rgba(255, 255, 255, 0.7);
+            --text: #1a1a2e;
+            --text-light: #2d2d44;
+            --purple: #5a4fcf;        /* royal purple */
+            --purple-light: #7b6ef0;
+            --border: rgba(90, 79, 207, 0.2);
+            --card-bg: rgba(255, 255, 255, 0.6);
+            --shadow: 0 20px 35px -8px rgba(90, 79, 207, 0.15);
+            --footer-bg: #f8faff;
+        }
+
+        /* Dark theme */
+        body.dark-mode {
+            --bg: #0c0c1a;
+            --surface: rgba(18, 18, 30, 0.8);
+            --text: #f0f0fa;
+            --text-light: #c2c2e0;
+            --purple: #8f7aff;        /* lighter purple for dark bg */
+            --purple-light: #a99bff;
+            --border: rgba(143, 122, 255, 0.25);
+            --card-bg: rgba(25, 25, 45, 0.7);
+            --shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.6);
+            --footer-bg: #080812;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Glassmorphism base */
+        .glass {
+            background: var(--surface);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 42px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.2s;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-links a:hover {
+            color: var(--purple);
+        }
+
+        /* theme toggle button */
+        #theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--purple);
+            display: flex;
+            align-items: center;
+            padding: 0.4rem;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            transition: 0.2s;
+        }
+
+        #theme-toggle:hover {
+            transform: scale(1.05);
+            color: var(--purple-light);
+        }
+
+        /* Mobile nav */
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            color: var(--purple);
+            cursor: pointer;
+        }
+
+        @media (max-width: 700px) {
+            .hamburger {
+                display: block;
+                order: 2;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                gap: 1rem;
+                padding: 1.5rem 0;
+                align-items: center;
+                background: var(--card-bg);
+                backdrop-filter: blur(16px);
+                border-radius: 2rem;
+                border: 1px solid var(--border);
+                margin-top: 0.5rem;
+            }
+            .nav-links.show {
+                display: flex;
+            }
+            nav {
+                align-items: center;
+            }
+            .logo {
+                flex: 1;
+            }
+        }
+
+        /* Hero */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            padding: 4rem 0 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1 1 300px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+
+        .hero-content .purple {
+            color: var(--purple);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin: 1.5rem 0 2rem;
+            max-width: 500px;
+        }
+
+        .hero-mascot {
+            flex: 1 1 300px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-mascot img {
+            max-width: 100%;
+            height: auto;
+            max-height: 320px;
+            object-fit: contain;
+            filter: drop-shadow(0 15px 25px rgba(90, 79, 207, 0.2));
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--purple);
+            color: white;
+            padding: 0.9rem 2.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid var(--purple-light);
+            transition: 0.2s;
+            box-shadow: 0 8px 18px rgba(90, 79, 207, 0.25);
+        }
+
+        .cta-button:hover {
+            background: var(--purple-light);
+            transform: translateY(-2px);
+        }
+
+        /* About minute section */
+        .about-minute {
+            margin: 4rem 0;
+            padding: 2.5rem;
+            border-radius: 2.5rem;
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border);
+        }
+
+        .about-minute h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--purple);
+        }
+
+        .about-minute p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 800px;
+        }
+
+        /* Model overview cards */
+        .model-overview {
+            margin: 4rem 0;
+        }
+
+        .model-overview h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--purple);
+        }
+
+        .cards {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            flex: 1 1 240px;
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: 0.2s;
+            box-shadow: var(--shadow);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--purple);
+        }
+
+        .card i {
+            font-size: 2.8rem;
+            color: var(--purple);
+            margin-bottom: 1.2rem;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 5rem;
+            padding: 2rem 0;
+            background: var(--footer-bg);
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--purple);
+        }
+
+        /* Floating WhatsApp button */
+        .wa-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #25D366;
+            color: white;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+            transition: 0.2s;
+            z-index: 99;
+            text-decoration: none;
+            border: 2px solid white;
+        }
+
+        .wa-float:hover {
+            transform: scale(1.1);
+            background: #20b859;
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 600px) {
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+            .container {
+                padding: 0 1.2rem;
+            }
+            .about-minute {
+                padding: 1.8rem;
+            }
+            .card {
+                flex-basis: 100%;
+            }
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/94766265730" class="wa-float" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div class="container">
+        <!-- Navbar -->
+        <nav>
+            <div class="logo">
+                <img src="Logo.png" style="height: 100px; width:auto;">
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Model.html">Model</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+            <button id="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i> <!-- will change via JS -->
+            </button>
+        </nav>
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>We don't just optimize.<br><span class="purple">We operate.</span></h1>
+                <p>The doctor model for revenue engineering: dissect, audit, prescribe, and execute with AI precision.</p>
+                <a href="#" class="cta-button">Book free audit</a>
+            </div>
+            <div class="hero-mascot">
+                <!-- Replace with your mascot PNG -->
+                <img src="Mascot.png" style="height: 250px; width:auto;">
+            </div>
+        </section>
+
+        <!-- Minute about section -->
+        <section class="about-minute glass">
+            <h2>Driven by precision.</h2>
+            <p>Lomit was born from a misspelled “limit” and a bold vision: to treat businesses like patients. We perform revenue autopsies, then prescribe automations, AI, and CRO to heal cash flow. No fluff, only delta.</p>
+        </section>
+
+        <!-- Small overview of our model -->
+        <section class="model-overview">
+            <h2>The Lomit model</h2>
+            <div class="cards">
+                <div class="card">
+                    <i class="fas fa-microscope"></i>
+                    <h3>1. Autopsy</h3>
+                    <p>Full pipeline dissection: traffic, conversions, retention, costs. We find every leak.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>2. Audit</h3>
+                    <p>Data‑packed report with metrics, deltas, and loss visualisation. You'll feel the pain.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-robot"></i>
+                    <h3>3. Prescription</h3>
+                    <p>Retainer‑based execution: AI, automation, CRO, SEO, chatbots — custom built.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>© 2025 Lomit. All rights reserved. — Sri Lanka</p>
+            <div class="footer-links">
+                <a href="#" aria-label="Email"><i class="far fa-envelope"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // Theme toggle
+            const body = document.body;
+            const themeBtn = document.getElementById('theme-toggle');
+            const icon = themeBtn.querySelector('i');
+
+            // Check localStorage
+            const savedTheme = localStorage.getItem('lomitTheme');
+            if (savedTheme) {
+                body.className = savedTheme;
+                updateIcon(savedTheme);
+            } else {
+                body.className = 'light-mode';
+                updateIcon('light-mode');
+            }
+
+            function updateIcon(theme) {
+                if (theme === 'light-mode') {
+                    icon.className = 'fas fa-sun';
+                } else {
+                    icon.className = 'fas fa-moon';
+                }
+            }
+
+            themeBtn.addEventListener('click', () => {
+                if (body.classList.contains('light-mode')) {
+                    body.classList.replace('light-mode', 'dark-mode');
+                    localStorage.setItem('lomitTheme', 'dark-mode');
+                    updateIcon('dark-mode');
+                } else {
+                    body.classList.replace('dark-mode', 'light-mode');
+                    localStorage.setItem('lomitTheme', 'light-mode');
+                    updateIcon('light-mode');
+                }
+            });
+
+            // Mobile hamburger
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('show');
+            });
+
+            // Close menu when link clicked (optional)
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('show');
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon-16x16.png">
+    <title>Lomit · The model</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s;
+        }
+
+        body.light-mode {
+            --bg: #ffffff;
+            --surface: rgba(255, 255, 255, 0.7);
+            --text: #1a1a2e;
+            --text-light: #2d2d44;
+            --purple: #5a4fcf;
+            --purple-light: #7b6ef0;
+            --border: rgba(90, 79, 207, 0.2);
+            --card-bg: rgba(255, 255, 255, 0.6);
+            --shadow: 0 20px 35px -8px rgba(90, 79, 207, 0.15);
+            --footer-bg: #f8faff;
+        }
+
+        body.dark-mode {
+            --bg: #0c0c1a;
+            --surface: rgba(18, 18, 30, 0.8);
+            --text: #f0f0fa;
+            --text-light: #c2c2e0;
+            --purple: #8f7aff;
+            --purple-light: #a99bff;
+            --border: rgba(143, 122, 255, 0.25);
+            --card-bg: rgba(25, 25, 45, 0.7);
+            --shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.6);
+            --footer-bg: #080812;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .glass {
+            background: var(--surface);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        /* Navbar (identical to home) */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 42px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.2s;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--purple);
+        }
+
+        #theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--purple);
+            display: flex;
+            align-items: center;
+            padding: 0.4rem;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            transition: 0.2s;
+        }
+
+        #theme-toggle:hover {
+            transform: scale(1.05);
+            color: var(--purple-light);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            color: var(--purple);
+            cursor: pointer;
+        }
+
+        @media (max-width: 700px) {
+            .hamburger {
+                display: block;
+                order: 2;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                gap: 1rem;
+                padding: 1.5rem 0;
+                align-items: center;
+                background: var(--card-bg);
+                backdrop-filter: blur(16px);
+                border-radius: 2rem;
+                border: 1px solid var(--border);
+                margin-top: 0.5rem;
+            }
+            .nav-links.show {
+                display: flex;
+            }
+        }
+
+        /* Page header */
+        .page-header {
+            padding: 3rem 0 1rem;
+        }
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .page-header .purple {
+            color: var(--purple);
+        }
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 650px;
+            margin-top: 0.8rem;
+        }
+
+        /* Model steps */
+        .steps {
+            margin: 4rem 0 3rem;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .step-number {
+            flex: 0 0 80px;
+            height: 80px;
+            background: var(--purple);
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            box-shadow: 0 12px 28px -8px var(--purple);
+        }
+
+        .step-content {
+            flex: 1;
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border);
+            border-radius: 2.5rem;
+            padding: 2.2rem 2.5rem;
+            transition: 0.2s;
+        }
+
+        .step-content:hover {
+            border-color: var(--purple);
+        }
+
+        .step-content h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--purple);
+        }
+
+        .step-content h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .step-desc {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .step-desc p {
+            flex: 2;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+
+        .step-desc .insight {
+            flex: 1;
+            background: var(--surface);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+
+        .step-desc .insight i {
+            color: var(--purple);
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        /* Pain points grid (interactive hover) */
+        .pain-points {
+            margin: 5rem 0;
+        }
+
+        .pain-points h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--purple);
+            text-align: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        .pain-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(6px);
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.2s;
+            cursor: default;
+        }
+
+        .pain-card:hover {
+            transform: scale(1.02);
+            border-color: var(--purple);
+            box-shadow: 0 20px 30px -12px var(--purple);
+        }
+
+        .pain-card i {
+            font-size: 2.6rem;
+            color: var(--purple);
+            margin-bottom: 1rem;
+        }
+
+        .pain-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .pain-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* 10‑year vision teaser */
+        .vision-teaser {
+            margin: 5rem 0 3rem;
+            padding: 2.5rem;
+            border-radius: 3rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .vision-teaser h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--purple);
+            margin-bottom: 0.8rem;
+        }
+
+        .vision-teaser p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            margin: 4rem 0;
+        }
+        .cta-button {
+            display: inline-block;
+            background: var(--purple);
+            color: white;
+            padding: 1rem 2.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid var(--purple-light);
+            transition: 0.2s;
+            box-shadow: 0 8px 18px rgba(90, 79, 207, 0.25);
+            font-size: 1.2rem;
+        }
+        .cta-button:hover {
+            background: var(--purple-light);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 5rem;
+            padding: 2rem 0;
+            background: var(--footer-bg);
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--purple);
+        }
+
+        /* Floating WhatsApp */
+        .wa-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #25D366;
+            color: white;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+            transition: 0.2s;
+            z-index: 99;
+            text-decoration: none;
+            border: 2px solid white;
+        }
+
+        .wa-float:hover {
+            transform: scale(1.1);
+            background: #20b859;
+        }
+
+        @media (max-width: 700px) {
+            .step-item {
+                gap: 1.5rem;
+            }
+            .step-number {
+                flex-basis: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+            }
+            .step-content {
+                padding: 1.5rem;
+            }
+            .step-desc {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <!-- WhatsApp floating -->
+    <a href="https://wa.me/94766265730" class="wa-float" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div class="container">
+        <!-- Navbar -->
+        <nav>
+            <div class="logo">
+                <img src="Logo.png" style="height: 100px; width:auto;">
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="model.html" class="active">Model</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button id="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+            </button>
+        </nav>
+
+        <!-- Page header -->
+        <section class="page-header">
+            <h1>The <span class="purple">Lomit model</span></h1>
+            <p>A surgical approach to revenue engineering. We dissect, audit, prescribe, and execute — all on a retainer that evolves with your business.</p>
+        </section>
+
+        <!-- Step-by-step model (doctor's process) -->
+        <section class="steps">
+            <!-- Step 1: Autopsy -->
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h2>Autopsy</h2>
+                    <h3>Full pipeline dissection</h3>
+                    <div class="step-desc">
+                        <p>We comb through every layer of your revenue stream: traffic sources, conversion funnels, retention rates, cost structures, and ad performance. Nothing is assumed — everything is measured.</p>
+                        <div class="insight">
+                            <i class="fas fa-microscope"></i>
+                            <strong>What we uncover:</strong> leak points, inefficient spend, drop-off junctures, and hidden opportunities.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Audit -->
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h2>Audit</h2>
+                    <h3>Data‑backed report</h3>
+                    <div class="step-desc">
+                        <p>Every finding is compiled into a detailed revenue analysis audit. Metrics, deltas, and loss projections are laid bare. We make you feel the weight of what’s being left on the table — because numbers don’t lie.</p>
+                        <div class="insight">
+                            <i class="fas fa-chart-pie"></i>
+                            <strong>Deliverable:</strong> A 10-15 page audit with executive summary, heatmaps, and prioritized action items.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Prescription -->
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h2>Prescription</h2>
+                    <h3>Tailored solutions</h3>
+                    <div class="step-desc">
+                        <p>Based on the audit, we engineer a custom roadmap: AI integrations, automation workflows, CRO experiments, SEO overhauls, email sequences, chatbot deployment — whatever your pipeline needs to heal.</p>
+                        <div class="insight">
+                            <i class="fas fa-robot"></i>
+                            <strong>Tools:</strong> No‑code automation, custom scripts, AI agents, and conversion‑focused design.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Retainer execution -->
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h2>Retainer</h2>
+                    <h3>Continuous optimisation</h3>
+                    <div class="step-desc">
+                        <p>We don’t walk away. You sign a retainer and we implement, monitor, and iterate. Monthly strategy calls, real‑time dashboards, and ongoing AI enhancements keep your revenue engine finely tuned.</p>
+                        <div class="insight">
+                            <i class="fas fa-calendar-check"></i>
+                            <strong>Included:</strong> Weekly progress reports, Slack communication, and quarterly deep‑dive audits.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Common pain points (interactive hover) -->
+        <section class="pain-points">
+            <h2>Where businesses bleed revenue</h2>
+            <div class="grid-3">
+                <div class="pain-card">
+                    <i class="fas fa-ad"></i>
+                    <h3>Ad waste</h3>
+                    <p>Up to 30% of ad spend goes to unqualified traffic or low‑converting placements.</p>
+                </div>
+                <div class="pain-card">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>Cart abandonment</h3>
+                    <p>Average 70% drop‑off at checkout — often due to friction or missing trust signals.</p>
+                </div>
+                <div class="pain-card">
+                    <i class="fas fa-envelope-open-text"></i>
+                    <h3>Weak email nurture</h3>
+                    <p>Leads go cold because follow‑ups are generic, untimed, or nonexistent.</p>
+                </div>
+                <div class="pain-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Retention leaks</h3>
+                    <p>Customer churn accelerates when engagement and support aren’t automated.</p>
+                </div>
+                <div class="pain-card">
+                    <i class="fas fa-code-branch"></i>
+                    <h3>Manual workflows</h3>
+                    <p>Repetitive tasks eat hours that should be spent on strategy and growth.</p>
+                </div>
+                <div class="pain-card">
+                    <i class="fas fa-search-dollar"></i>
+                    <h3>Poor SEO ROI</h3>
+                    <p>Content that doesn’t convert or rank — a silent budget drain.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vision teaser (10‑year AI company) -->
+        <section class="vision-teaser">
+            <h3>10‑year vision: an AI‑driven future</h3>
+            <p>Lomit is built to systematize. Over the next decade, we’re evolving into a full‑stack AI company where 80% of tasks are handled by autonomous systems — expanding into AI cybersecurity and systems engineering. The doctor model is just the beginning.</p>
+        </section>
+
+        <!-- Call to action -->
+        <section class="cta-section">
+            <a href="Contact.html" class="cta-button">Book your free revenue audit</a>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>© 2025 Lomit. All rights reserved. — Sri Lanka</p>
+            <div class="footer-links">
+                <a href="#" aria-label="Email"><i class="far fa-envelope"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const body = document.body;
+            const themeBtn = document.getElementById('theme-toggle');
+            const icon = themeBtn.querySelector('i');
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+
+            // Theme handling
+            const savedTheme = localStorage.getItem('lomitTheme');
+            if (savedTheme) {
+                body.className = savedTheme;
+                updateIcon(savedTheme);
+            } else {
+                body.className = 'light-mode';
+                updateIcon('light-mode');
+            }
+
+            function updateIcon(theme) {
+                icon.className = theme === 'light-mode' ? 'fas fa-sun' : 'fas fa-moon';
+            }
+
+            themeBtn.addEventListener('click', () => {
+                if (body.classList.contains('light-mode')) {
+                    body.classList.replace('light-mode', 'dark-mode');
+                    localStorage.setItem('lomitTheme', 'dark-mode');
+                    updateIcon('dark-mode');
+                } else {
+                    body.classList.replace('dark-mode', 'light-mode');
+                    localStorage.setItem('lomitTheme', 'light-mode');
+                    updateIcon('light-mode');
+                }
+            });
+
+            // Mobile menu
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('show');
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('show');
+                });
+            });
+
+            // Set active class based on current page (optional, here we hardcoded on model.html)
+            // For consistency, we already added active class to Model link.
+        })();
+    </script>
+
+</body>
+</html>
