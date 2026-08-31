@@ -3,390 +3,455 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="favicon-16x16.png">
     <title>Lomit · Contact</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon-96x96.png">
+    
+    <!-- Security Header & Meta -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; script-src 'self' 'unsafe-inline'; frame-src https://www.google.com; form-action https://formspree.io;">
+    <meta name="description" content="Contact Lomit Revenue Engineering. Direct inquiry form, headquarters location, and instant communication channels.">
+    
+    <!-- Preconnecting to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
+        :root {
+            --bg-base: #050505;
+            --bg-surface: #0f0f0f;
+            --bg-surface-hover: #171717;
+            
+            --text-main: #fcfcfc;
+            --text-muted: #8a8a93;
+            
+            --accent-primary: #7c3aed; /* Deep, vibrant purple */
+            --accent-hover: #9353d3;
+            --border-subtle: #222222;
+            --border-highlight: rgba(124, 58, 237, 0.3);
+            
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s;
-        }
-
-        body.light-mode {
-            --bg: #ffffff;
-            --surface: rgba(255, 255, 255, 0.7);
-            --text: #1a1a2e;
-            --text-light: #2d2d44;
-            --purple: #5a4fcf;
-            --purple-light: #7b6ef0;
-            --border: rgba(90, 79, 207, 0.2);
-            --card-bg: rgba(255, 255, 255, 0.6);
-            --shadow: 0 20px 35px -8px rgba(90, 79, 207, 0.15);
-            --footer-bg: #f8faff;
-            --input-bg: rgba(255, 255, 255, 0.8);
-        }
-
-        body.dark-mode {
-            --bg: #0c0c1a;
-            --surface: rgba(18, 18, 30, 0.8);
-            --text: #f0f0fa;
-            --text-light: #c2c2e0;
-            --purple: #8f7aff;
-            --purple-light: #a99bff;
-            --border: rgba(143, 122, 255, 0.25);
-            --card-bg: rgba(25, 25, 45, 0.7);
-            --shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.6);
-            --footer-bg: #080812;
-            --input-bg: rgba(30, 30, 50, 0.9);
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.5;
+            font-family: var(--font-main);
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        .glass {
-            background: var(--surface);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
-            border-radius: 2rem;
-            box-shadow: var(--shadow);
+        ::selection {
+            background: var(--accent-primary);
+            color: #fff;
         }
 
         .container {
-            max-width: 1280px;
+            width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
-            width: 100%;
         }
 
-        /* Navbar */
+        header {
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
         nav {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1.2rem 0;
-            flex-wrap: wrap;
-            gap: 1rem;
         }
 
         .logo img {
-            height: 42px;
+            height: 75px; /* Increased height (adjust between 50px - 60px to taste) */
             width: auto;
             display: block;
+            margin-top: -8px; /* Offsets vertical spacing to keep navbar height intact */
+            margin-bottom: -8px;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 2.5rem;
+            gap: 3rem;
             list-style: none;
+            margin-left: auto; /* Aligns links strictly to the right */
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text);
+            color: var(--text-muted);
             font-weight: 500;
-            font-size: 1rem;
-            transition: color 0.2s;
-            letter-spacing: -0.01em;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+            transition: var(--transition-smooth);
         }
 
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--purple);
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
         }
 
-        #theme-toggle {
-            background: none;
-            border: none;
-            font-size: 1.4rem;
-            cursor: pointer;
-            color: var(--purple);
-            display: flex;
-            align-items: center;
-            padding: 0.4rem;
-            border-radius: 50%;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            transition: 0.2s;
-        }
-
-        #theme-toggle:hover {
-            transform: scale(1.05);
-            color: var(--purple-light);
-        }
-
-        .hamburger {
+        .mobile-menu-btn {
             display: none;
-            font-size: 1.8rem;
             background: none;
             border: none;
-            color: var(--purple);
+            color: var(--text-main);
+            font-size: 1.5rem;
             cursor: pointer;
         }
 
-        @media (max-width: 700px) {
-            .hamburger {
-                display: block;
-                order: 2;
-            }
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                gap: 1rem;
-                padding: 1.5rem 0;
-                align-items: center;
-                background: var(--card-bg);
-                backdrop-filter: blur(16px);
-                border-radius: 2rem;
-                border: 1px solid var(--border);
-                margin-top: 0.5rem;
-            }
-            .nav-links.show {
-                display: flex;
-            }
+        main {
+            flex: 1;
         }
 
-        /* Page header */
         .page-header {
-            padding: 3rem 0 1rem;
-        }
-        .page-header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-        .page-header .purple {
-            color: var(--purple);
+            padding: 6rem 0 3rem;
+            text-align: center;
         }
 
-        /* Contact grid */
+        .page-header h1 {
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin-bottom: 0.75rem;
+            line-height: 1.1;
+        }
+
+        .text-accent {
+            color: var(--accent-primary);
+        }
+
+        .page-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin: 4rem 0;
+            gap: 2.5rem;
+            margin-bottom: 6rem;
         }
 
-        /* Contact info cards */
-        .info-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(8px);
-            border: 1px solid var(--border);
-            border-radius: 2.5rem;
-            padding: 2rem;
+        .matte-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
             margin-bottom: 2rem;
         }
-        .info-card h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--purple);
-            margin-bottom: 1.5rem;
+
+        .matte-card:last-child {
+            margin-bottom: 0;
         }
+
+        .matte-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-highlight), transparent);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-title i {
+            color: var(--accent-primary);
+            font-size: 1.25rem;
+        }
+
         .contact-detail {
             display: flex;
             align-items: center;
-            gap: 1.2rem;
-            margin-bottom: 1.5rem;
+            gap: 1.25rem;
+            margin-bottom: 1.25rem;
+            padding: 0.85rem 1rem;
+            border-radius: 0.85rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: var(--transition-smooth);
         }
+
+        .contact-detail:hover {
+            background: rgba(124, 58, 237, 0.05);
+            border-color: var(--border-highlight);
+        }
+
         .contact-detail i {
-            font-size: 1.8rem;
-            color: var(--purple);
+            font-size: 1.25rem;
+            color: var(--accent-primary);
             width: 2rem;
             text-align: center;
         }
+
         .contact-detail a, .contact-detail span {
-            color: var(--text-light);
+            color: var(--text-main);
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            font-weight: 500;
             word-break: break-word;
-        }
-        .contact-detail a:hover {
-            color: var(--purple);
+            transition: var(--transition-smooth);
         }
 
-        /* Map container */
-        .map-container {
-            border-radius: 2rem;
-            overflow: hidden;
-            border: 2px solid var(--border);
-            height: 250px;
-            width: 100%;
+        .contact-detail a:hover {
+            color: var(--accent-hover);
         }
+
+        .map-container {
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            height: 240px;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
         .map-container iframe {
             width: 100%;
             height: 100%;
             border: 0;
+            filter: grayscale(100%) invert(92%) contrast(83%);
         }
 
-        /* Social links */
         .social-links {
             display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        .social-links a {
-            color: var(--text-light);
-            font-size: 1.8rem;
-            transition: color 0.2s;
-        }
-        .social-links a:hover {
-            color: var(--purple);
+            gap: 1rem;
         }
 
-        /* Formspree form */
+        .social-links a {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-primary);
+            color: #ffffff;
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);
+        }
+
         .form-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(8px);
-            border: 1px solid var(--border);
-            border-radius: 2.5rem;
-            padding: 2.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
-        .form-card h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--purple);
-            margin-bottom: 1.5rem;
-        }
+
         .form-group {
             margin-bottom: 1.5rem;
         }
+
         label {
             display: block;
             margin-bottom: 0.5rem;
-            color: var(--text);
+            color: var(--text-main);
             font-weight: 500;
-        }
-        input, textarea {
-            width: 100%;
-            padding: 1rem 1.2rem;
-            background: var(--input-bg);
-            border: 1px solid var(--border);
-            border-radius: 1.5rem;
-            font-size: 1rem;
-            color: var(--text);
-            transition: 0.2s;
-        }
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--purple);
-            box-shadow: 0 0 0 3px rgba(90, 79, 207, 0.2);
-        }
-        textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        .submit-btn {
-            background: var(--purple);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: 0.2s;
-            width: 100%;
-            border: 1px solid var(--purple-light);
-        }
-        .submit-btn:hover {
-            background: var(--purple-light);
-            transform: translateY(-2px);
-        }
-        .form-note {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: var(--text-light);
-            text-align: center;
-        }
-
-        /* CTA */
-        .cta-section {
-            text-align: center;
-            margin: 4rem 0;
-        }
-        .cta-button {
-            display: inline-block;
-            background: var(--purple);
-            color: white;
-            padding: 1rem 2.8rem;
-            border-radius: 40px;
-            font-weight: 600;
-            text-decoration: none;
-            border: 1px solid var(--purple-light);
-            transition: 0.2s;
-            box-shadow: 0 8px 18px rgba(90, 79, 207, 0.25);
-            font-size: 1.2rem;
-        }
-        .cta-button:hover {
-            background: var(--purple-light);
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 5rem;
-            padding: 2rem 0;
-            background: var(--footer-bg);
-            border-top: 1px solid var(--border);
-        }
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        .footer-content p {
-            color: var(--text-light);
             font-size: 0.95rem;
         }
-        .footer-links {
-            display: flex;
-            gap: 1.8rem;
-        }
-        .footer-links a {
-            color: var(--text-light);
-            font-size: 1.3rem;
-            transition: color 0.2s;
-        }
-        .footer-links a:hover {
-            color: var(--purple);
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: rgba(5, 5, 5, 0.6);
+            border: 1px solid var(--border-subtle);
+            border-radius: 0.85rem;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            font-family: var(--font-main);
+            transition: var(--transition-smooth);
         }
 
-        /* Floating WhatsApp */
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25);
+            background: #0a0a0a;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--accent-primary);
+            color: #ffffff;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            width: 100%;
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.4);
+        }
+
+        .form-note {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
         .wa-float {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
             background: #25D366;
-            color: white;
-            width: 64px;
-            height: 64px;
+            color: #ffffff;
+            width: 58px;
+            height: 58px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2rem;
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
-            transition: 0.2s;
+            font-size: 1.8rem;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
+            transition: var(--transition-smooth);
             z-index: 99;
             text-decoration: none;
-            border: 2px solid white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
+
         .wa-float:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) translateY(-3px);
             background: #20b859;
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        footer {
+            background: #020202;
+            border-top: 1px solid var(--border-subtle);
+            padding: 4rem 0;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-info h4 {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+
+        .footer-section h5 {
+            color: var(--text-main);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-text-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-text-list li {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .legal-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .legal-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+        }
+
+        .legal-links a:hover {
+            color: var(--text-main);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
         @media (max-width: 900px) {
@@ -395,172 +460,206 @@
                 gap: 2rem;
             }
         }
-        @media (max-width: 600px) {
-            .page-header h1 {
-                font-size: 2.4rem;
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg-base);
+                flex-direction: column;
+                gap: 0;
+                border-bottom: 1px solid var(--border-subtle);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease;
             }
+
+            .nav-links.active { max-height: 300px; }
+            .nav-links li { width: 100%; text-align: center; }
+            .nav-links a { display: block; padding: 1.2rem; border-bottom: 1px solid var(--border-subtle); }
+            .mobile-menu-btn { display: block; }
+
+            .page-header { padding: 4rem 0 2rem; }
+            .matte-card { padding: 1.75rem; }
+
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .footer-bottom { flex-direction: column; text-align: center; justify-content: center; }
+            .legal-links { justify-content: center; width: 100%; }
         }
     </style>
 </head>
-<body class="light-mode">
-    <!-- WhatsApp floating -->
-    <a href="https://wa.me/94766265730" class="wa-float" target="_blank" aria-label="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+<body>
 
-    <div class="container">
-        <!-- Navbar -->
-        <nav>
-            <div class="logo">
-                <img src="Logo.png" style="height: 100px; width:auto;">
-            </div>
-            <button class="hamburger" id="hamburger" aria-label="Menu">
-                <i class="fas fa-bars"></i>
-            </button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="model.html">Model</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html" class="active">Contact</a></li>
-            </ul>
-            <button id="theme-toggle" aria-label="Toggle theme">
-                <i class="fas fa-sun"></i>
-            </button>
-        </nav>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="Home.html" class="logo" aria-label="Lomit Homepage">
+                    <img src="Logo.png" alt="Lomit Logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'32\'><text x=\'0\' y=\'24\' fill=\'%23fff\' font-family=\'sans-serif\' font-size=\'22\' font-weight=\'bold\' letter-spacing=\'-1\'>LOMIT</text></svg>'">
+                </a>
+                
+                <button class="mobile-menu-btn" id="mobile-btn" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="model.html">Model</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-        <!-- Page header -->
-        <section class="page-header">
-            <h1>Get in <span class="purple">touch</span></h1>
+    <main>
+        <section class="page-header container">
+            <h1>Get in <span class="text-accent">Touch</span></h1>
+            <p>Initiate direct communication with our revenue engineering team. We evaluate strategic fits with surgical precision.</p>
         </section>
 
-        <!-- Contact grid: left info + map / right form -->
-        <section class="contact-grid">
-            <!-- Left column -->
-            <div>
-                <!-- Direct contact card -->
-                <div class="info-card">
-                    <h2>Contact directly</h2>
-                    <div class="contact-detail">
-                        <i class="far fa-envelope"></i>
-                        <a href="mailto:contact@lomit.digital">contact@lomit.digital</a>
+        <section class="container">
+            <div class="contact-grid">
+                
+                <!-- Left Column: Direct info, map & socials -->
+                <div>
+                    <!-- Direct Contact Card -->
+                    <div class="matte-card">
+                        <h2 class="card-title"><i class="far fa-paper-plane"></i> Direct Channels</h2>
+                        
+                        <div class="contact-detail">
+                            <i class="far fa-envelope"></i>
+                            <a href="mailto:contact@lomit.digital">contact@lomit.digital</a>
+                        </div>
+                        
+                        <div class="contact-detail">
+                            <i class="fab fa-whatsapp"></i>
+                            <a href="https://wa.me/94766265730" target="_blank" rel="noopener">+94 76 626 5730</a>
+                        </div>
+                        
+                        <div class="contact-detail">
+                            <i class="fas fa-location-dot"></i>
+                            <span>Kandy, Central Province, Sri Lanka</span>
+                        </div>
                     </div>
-                    <div class="contact-detail">
-                        <i class="fab fa-whatsapp"></i>
-                        <a href="https://wa.me/94766265730" target="_blank">+94 76 626 5730</a>
+
+                    <!-- Google Map Container -->
+                    <div class="matte-card">
+                        <h2 class="card-title"><i class="fas fa-map-location-dot"></i> Regional Hub</h2>
+                        <div class="map-container">
+                            <iframe 
+                                title="Lomit Sri Lanka Location Map"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31679.37067608844!2d80.61869345!3d7.2905715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae366266498acd3%3A0x411a3814a6233c79!2sKandy%2C%20Sri%20Lanka!5e0!3m2!1sen!2sus!4v1614678455212!5m2!1sen!2sus" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                            </iframe>
+                        </div>
                     </div>
-                    <div class="contact-detail">
-                        <i class="fas fa-map-pin"></i>
-                        <span>Kandy, Central Province, Sri Lanka</span>
+
+                    <!-- Social Links -->
+                    <div class="matte-card">
+                        <h2 class="card-title"><i class="fas fa-share-nodes"></i> Follow Us</h2>
+                        <div class="social-links">
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Google Map -->
-                <div class="info-card">
-                    <h2>Our location</h2>
-                    <div class="map-container">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31679.37067608844!2d80.61869345!3d7.2905715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae366266498acd3%3A0x411a3814a6233c79!2sKandy%2C%20Sri%20Lanka!5e0!3m2!1sen!2sus!4v1614678455212!5m2!1sen!2sus" 
-                            allowfullscreen="" 
-                            loading="lazy">
-                        </iframe>
+                <div>
+                    <div class="matte-card form-card">
+                        <h2 class="card-title"><i class="far fa-comment-dots"></i> Send a Message</h2>
+                        
+                        <form action="https://formspree.io/f/meelgrvg" method="POST">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" placeholder="John Doe" required autocomplete="name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="john@company.com" required autocomplete="email">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" placeholder="Describe your current operational bottlenecks or goals..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">
+                                <span>Send Message</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                            
+                            <p class="form-note">We strictly evaluate inquiries and respond within 24 hours.</p>
+                        </form>
                     </div>
                 </div>
 
-                <!-- Social links -->
-                <div class="info-card">
-                    <h2>Follow us</h2>
-                    <div class="social-links">
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right column: Formspree form -->
-            <div>
-                <div class="form-card">
-                    <h2>Send a message</h2>
-                    <!-- REPLACE FORM ACTION WITH YOUR FORMSPREE ENDPOINT -->
-                    <form action="https://formspree.io/f/meelgrvg" method="POST">
-                        <div class="form-group">
-                            <label for="name">Your name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Send message</button>
-                        <p class="form-note">We'll reply within 24h.</p>
-                    </form>
-                </div>
             </div>
         </section>
+    </main>
 
-
-    <!-- Footer -->
     <footer>
-        <div class="container footer-content">
-            <p>© 2025 Lomit. All rights reserved. — Sri Lanka</p>
-            <div class="footer-links">
-                <a href="#" aria-label="Email"><i class="far fa-envelope"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+        <div class="container">
+            <div class="footer-grid">
+                
+                <div class="footer-info">
+                    <h4>Lomit Revenue Engineering</h4>
+                    <p>We build and deploy systems that scale businesses intelligently. Driven strictly by data, executed with precision.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h5>Headquarters</h5>
+                    <ul class="footer-text-list">
+                        <li>Kandy</li>
+                        <li>Central Province</li>
+                        <li>Sri Lanka</li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2026 Lomit. All rights reserved.</p>
+                
+                <div class="legal-links">
+                    <a href="PP.html">Privacy Policy</a>
+                    <a href="ToS.html">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        (function() {
-            const body = document.body;
-            const themeBtn = document.getElementById('theme-toggle');
-            const icon = themeBtn.querySelector('i');
-            const hamburger = document.getElementById('hamburger');
-            const navLinks = document.getElementById('navLinks');
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Drawer Toggle
+            const mobileBtn = document.getElementById('mobile-btn');
+            const navLinks = document.getElementById('nav-links');
+            const icon = mobileBtn.querySelector('i');
 
-            // Theme
-            const savedTheme = localStorage.getItem('lomitTheme');
-            if (savedTheme) {
-                body.className = savedTheme;
-                updateIcon(savedTheme);
-            } else {
-                body.className = 'light-mode';
-                updateIcon('light-mode');
-            }
-
-            function updateIcon(theme) {
-                icon.className = theme === 'light-mode' ? 'fas fa-sun' : 'fas fa-moon';
-            }
-
-            themeBtn.addEventListener('click', () => {
-                if (body.classList.contains('light-mode')) {
-                    body.classList.replace('light-mode', 'dark-mode');
-                    localStorage.setItem('lomitTheme', 'dark-mode');
-                    updateIcon('dark-mode');
+            mobileBtn.addEventListener('click', () => {
+                const isOpen = navLinks.classList.toggle('active');
+                if (isOpen) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
                 } else {
-                    body.classList.replace('dark-mode', 'light-mode');
-                    localStorage.setItem('lomitTheme', 'light-mode');
-                    updateIcon('light-mode');
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
                 }
             });
 
-            // Mobile menu
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('show');
+            // Close mobile navigation drawer on outside click
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('nav') && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
             });
-
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('show');
-                });
-            });
-        })();
+        });
     </script>
-    <!-- Replace placeholder logo and Formspree action URL -->
 </body>
 </html>
