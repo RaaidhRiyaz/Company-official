@@ -3,597 +3,794 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="favicon-16x16.png">
     <title>Lomit · About</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon-96x96.png">
+    
+    <!-- Strict Content Security Policy for maximum safety -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; script-src 'self' 'unsafe-inline';">
+    <meta name="description" content="About Lomit: Engineered precision for digital revenue pipelines. Discover our DDP model, our mission, and our visionary team.">
+    
+    <!-- Preconnecting to fonts for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
+        :root {
+            --bg-base: #050505;
+            --bg-surface: #0f0f0f;
+            --bg-surface-hover: #171717;
+            
+            --text-main: #fcfcfc;
+            --text-muted: #8a8a93;
+            
+            --accent-primary: #7c3aed; /* Deep, vibrant purple */
+            --accent-hover: #9353d3;
+            --border-subtle: #222222;
+            --border-highlight: rgba(124, 58, 237, 0.3);
+            
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s;
-        }
-
-        body.light-mode {
-            --bg: #ffffff;
-            --surface: rgba(255, 255, 255, 0.7);
-            --text: #1a1a2e;
-            --text-light: #2d2d44;
-            --purple: #5a4fcf;
-            --purple-light: #7b6ef0;
-            --border: rgba(90, 79, 207, 0.2);
-            --card-bg: rgba(255, 255, 255, 0.6);
-            --shadow: 0 20px 35px -8px rgba(90, 79, 207, 0.15);
-            --footer-bg: #f8faff;
-        }
-
-        body.dark-mode {
-            --bg: #0c0c1a;
-            --surface: rgba(18, 18, 30, 0.8);
-            --text: #f0f0fa;
-            --text-light: #c2c2e0;
-            --purple: #8f7aff;
-            --purple-light: #a99bff;
-            --border: rgba(143, 122, 255, 0.25);
-            --card-bg: rgba(25, 25, 45, 0.7);
-            --shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.6);
-            --footer-bg: #080812;
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.5;
+            font-family: var(--font-main);
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        .glass {
-            background: var(--surface);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
-            border-radius: 2rem;
-            box-shadow: var(--shadow);
+        ::selection {
+            background: var(--accent-primary);
+            color: #fff;
         }
 
         .container {
-            max-width: 1280px;
+            width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
-            width: 100%;
         }
 
-        /* Navbar */
+        header {
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
         nav {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1.2rem 0;
-            flex-wrap: wrap;
-            gap: 1rem;
         }
 
         .logo img {
-            height: 42px;
+            height: 75px; /* Increased height (adjust between 50px - 60px to taste) */
             width: auto;
             display: block;
+            margin-top: -8px; /* Offsets vertical spacing to keep navbar height intact */
+            margin-bottom: -8px;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 2.5rem;
+            gap: 3rem;
             list-style: none;
+            margin-left: auto; /* Forces links strictly to the right */
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text);
+            color: var(--text-muted);
             font-weight: 500;
-            font-size: 1rem;
-            transition: color 0.2s;
-            letter-spacing: -0.01em;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+            transition: var(--transition-smooth);
         }
 
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--purple);
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
         }
 
-        #theme-toggle {
-            background: none;
-            border: none;
-            font-size: 1.4rem;
-            cursor: pointer;
-            color: var(--purple);
-            display: flex;
-            align-items: center;
-            padding: 0.4rem;
-            border-radius: 50%;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            transition: 0.2s;
-        }
-
-        #theme-toggle:hover {
-            transform: scale(1.05);
-            color: var(--purple-light);
-        }
-
-        .hamburger {
+        .mobile-menu-btn {
             display: none;
-            font-size: 1.8rem;
             background: none;
             border: none;
-            color: var(--purple);
+            color: var(--text-main);
+            font-size: 1.5rem;
             cursor: pointer;
+            margin-left: 1.5rem;
         }
 
-        @media (max-width: 700px) {
-            .hamburger {
-                display: block;
-                order: 2;
-            }
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                gap: 1rem;
-                padding: 1.5rem 0;
-                align-items: center;
-                background: var(--card-bg);
-                backdrop-filter: blur(16px);
-                border-radius: 2rem;
-                border: 1px solid var(--border);
-                margin-top: 0.5rem;
-            }
-            .nav-links.show {
-                display: flex;
-            }
+        main {
+            flex: 1;
         }
 
-        /* Page header */
         .page-header {
-            padding: 3rem 0 1rem;
+            padding: 8rem 0 4rem;
+            text-align: center;
+            position: relative;
         }
+
         .page-header h1 {
-            font-size: 3rem;
+            font-size: clamp(3rem, 5vw, 4.5rem);
             font-weight: 700;
+            letter-spacing: -0.04em;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .text-accent {
+            color: var(--accent-primary);
+        }
+
+        .about-intro {
+            max-width: 800px;
+            margin: 0 auto 5rem;
+            text-align: center;
+        }
+
+        .about-intro p {
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .founder-section {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 2rem;
+            padding: 4rem;
+            margin: 2rem auto 6rem;
+            max-width: 1000px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .founder-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-highlight), transparent);
+        }
+
+        .founder-content h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
             letter-spacing: -0.02em;
         }
-        .page-header .purple {
-            color: var(--purple);
-        }
-        .page-header p {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            max-width: 700px;
-            margin-top: 0.8rem;
+        
+        .founder-content h3 {
+            font-size: 1.1rem;
+            color: var(--accent-primary);
+            margin-bottom: 2rem;
+            font-weight: 500;
         }
 
-        /* Founder section */
-        .founder {
+        .founder-quote {
+            font-size: 1.25rem;
+            color: var(--text-main);
+            line-height: 1.7;
+            font-style: italic;
+            border-left: 3px solid var(--accent-primary);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .founder-content p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .mission-vision-timeline {
+            padding: 4rem 0 8rem;
+            position: relative;
+        }
+
+        .timeline-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 60px; 
+            bottom: 60px;
+            left: 50%;
+            width: 2px;
+            background: var(--border-subtle);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .timeline-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%; 
+            background: linear-gradient(to bottom, var(--accent-primary), var(--accent-hover));
+            transition: height 0.5s ease-out;
+        }
+
+        .timeline-step {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 6rem;
             display: flex;
-            gap: 3rem;
-            margin: 4rem 0;
-            flex-wrap: wrap;
+            align-items: center;
+            opacity: 0.3;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        .founder-text {
-            flex: 2;
+
+        .timeline-step:nth-child(odd) { justify-content: flex-start; }
+        .timeline-step:nth-child(even) { justify-content: flex-end; }
+        .timeline-step:last-child { margin-bottom: 0; }
+        .timeline-step.is-visible { opacity: 1; transform: translateY(0); }
+
+        .step-node {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--bg-base);
+            border: 2px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: all 0.5s ease;
+            box-shadow: 0 0 0 10px var(--bg-base);
+            z-index: 3;
         }
-        .founder-text h2 {
-            font-size: 2.2rem;
+
+        .timeline-step.is-active .step-node {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.4), 0 0 0 10px var(--bg-base);
+        }
+
+        .step-content {
+            width: 45%; 
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 1.25rem;
+            padding: 3rem;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .timeline-step.is-active .step-content {
+            border-color: var(--border-highlight);
+            background: var(--bg-surface-hover);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.4);
+        }
+
+        .step-content h2 {
+            font-size: 2rem;
             font-weight: 600;
-            color: var(--purple);
-            margin-bottom: 1rem;
-        }
-        .founder-text p {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 1.2rem;
-        }
-        .founder-stats {
-            flex: 1;
-            background: var(--card-bg);
-            backdrop-filter: blur(8px);
-            border: 1px solid var(--border);
-            border-radius: 2rem;
-            padding: 2rem;
-        }
-        .founder-stats h3 {
-            font-size: 1.4rem;
+            color: var(--text-main);
             margin-bottom: 1.5rem;
-            color: var(--purple);
-        }
-        .stat-item {
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 1.5rem;
         }
-        .stat-item i {
-            font-size: 2rem;
-            color: var(--purple);
-            width: 40px;
-        }
-        .stat-item .label {
-            font-weight: 500;
-        }
-        .stat-item .value {
-            color: var(--text-light);
-            font-size: 0.95rem;
+        
+        .step-content h2 i {
+            color: var(--accent-primary);
         }
 
-        /* Mission & Vision */
-        .mission-vision {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 5rem 0;
+        .step-content p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.7;
         }
-        .mv-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(8px);
-            border: 1px solid var(--border);
-            border-radius: 2.5rem;
-            padding: 2.5rem 2rem;
+
+        .markets-section {
+            padding: 4rem 0;
             text-align: center;
         }
-        .mv-card i {
-            font-size: 3rem;
-            color: var(--purple);
-            margin-bottom: 1.2rem;
-        }
-        .mv-card h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--purple);
-        }
-        .mv-card p {
-            color: var(--text-light);
-            font-size: 1.05rem;
-        }
-
-        /* Target markets & niche */
-        .target-section {
-            margin: 5rem 0;
-        }
-        .target-section h2 {
+        
+        .section-title {
             font-size: 2.2rem;
             font-weight: 600;
-            color: var(--purple);
-            text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            letter-spacing: -0.02em;
         }
-        .markets {
+
+        .markets-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1.5rem 2.5rem;
-            margin-bottom: 3rem;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .market-item {
-            background: var(--card-bg);
-            backdrop-filter: blur(6px);
-            border: 1px solid var(--border);
-            border-radius: 40px;
-            padding: 0.8rem 2rem;
-            display: inline-flex;
+
+        .market-pill {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            padding: 0.75rem 1.5rem;
+            border-radius: 100px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            display: flex;
             align-items: center;
-            gap: 0.6rem;
-            font-weight: 500;
-        }
-        .market-item i {
-            color: var(--purple);
-            font-size: 1.2rem;
-        }
-        .niche-card {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 3rem;
-            padding: 2.5rem;
-            text-align: center;
-        }
-        .niche-card i {
-            font-size: 2.8rem;
-            color: var(--purple);
-            margin-bottom: 1rem;
-        }
-        .niche-card h3 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-        .niche-card p {
-            color: var(--text-light);
-            font-size: 1.1rem;
+            gap: 0.5rem;
+            transition: var(--transition-smooth);
         }
 
-        /* Long-term vision (consistent with model page) */
-        .vision-teaser {
-            margin: 5rem 0 3rem;
-            padding: 2.5rem;
-            border-radius: 3rem;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            text-align: center;
-        }
-        .vision-teaser h3 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--purple);
-            margin-bottom: 0.8rem;
-        }
-        .vision-teaser p {
-            max-width: 700px;
-            margin: 0 auto;
-            color: var(--text-light);
-            font-size: 1.1rem;
-        }
-
-        /* CTA */
-        .cta-section {
-            text-align: center;
-            margin: 4rem 0;
-        }
-        .cta-button {
-            display: inline-block;
-            background: var(--purple);
-            color: white;
-            padding: 1rem 2.8rem;
-            border-radius: 40px;
-            font-weight: 600;
-            text-decoration: none;
-            border: 1px solid var(--purple-light);
-            transition: 0.2s;
-            box-shadow: 0 8px 18px rgba(90, 79, 207, 0.25);
-            font-size: 1.2rem;
-        }
-        .cta-button:hover {
-            background: var(--purple-light);
+        .market-pill:hover {
+            background: rgba(124, 58, 237, 0.1);
+            border-color: var(--accent-primary);
+            color: var(--text-main);
             transform: translateY(-2px);
         }
+        
+        .market-pill i { color: var(--accent-primary); }
 
-        /* Footer */
-        footer {
-            margin-top: 5rem;
-            padding: 2rem 0;
-            background: var(--footer-bg);
-            border-top: 1px solid var(--border);
+        .niche-card {
+            background: linear-gradient(145deg, rgba(15, 15, 15, 0.9), rgba(10, 10, 10, 0.95));
+            border: 1px solid var(--border-subtle);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            max-width: 800px;
+            margin: 0 auto 6rem;
+            text-align: left;
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
         }
-        .footer-content {
+        
+        .niche-card i {
+            font-size: 2.5rem;
+            color: var(--accent-primary);
+            margin-top: 0.2rem;
+        }
+
+        .niche-content h3 {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+        }
+        
+        .niche-content p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Interactive Future Card with Shooting Stars */
+        .future-card-container {
+            padding: 0 0 8rem;
+        }
+
+        .future-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 2rem;
+            padding: 5rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            cursor: default;
+        }
+        
+        .future-card:hover {
+            border-color: var(--border-highlight);
+            box-shadow: 0 20px 50px -15px rgba(124, 58, 237, 0.15);
+            transform: scale(1.01);
+        }
+
+        .future-card-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .future-card h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .future-card p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Shooting Stars Animation */
+        .shooting-star {
+            position: absolute;
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(124,58,237,0), rgba(124,58,237,1), rgba(255,255,255,1));
+            top: 0;
+            left: -100px;
+            opacity: 0;
+            transform: rotate(-45deg);
+            z-index: 1;
+        }
+
+        .future-card:hover .shooting-star:nth-child(1) {
+            top: 20%; left: 80%;
+            animation: shoot 2s linear infinite;
+        }
+        
+        .future-card:hover .shooting-star:nth-child(2) {
+            top: -10%; left: 40%;
+            animation: shoot 3s linear infinite 1s;
+        }
+        
+        .future-card:hover .shooting-star:nth-child(3) {
+            top: 50%; left: 110%;
+            animation: shoot 2.5s linear infinite 0.5s;
+        }
+
+        @keyframes shoot {
+            0% { transform: rotate(-45deg) translateX(0); opacity: 1; }
+            70% { opacity: 1; }
+            100% { transform: rotate(-45deg) translateX(-1000px); opacity: 0; }
+        }
+
+        footer {
+            background: #020202;
+            border-top: 1px solid var(--border-subtle);
+            padding: 4rem 0;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-info h4 {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+
+        .footer-section h5 {
+            color: var(--text-main);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-text-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-text-list li {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .footer-bottom {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
             flex-wrap: wrap;
-            gap: 1rem;
-        }
-        .footer-content p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-        .footer-links {
-            display: flex;
-            gap: 1.8rem;
-        }
-        .footer-links a {
-            color: var(--text-light);
-            font-size: 1.3rem;
-            transition: color 0.2s;
-        }
-        .footer-links a:hover {
-            color: var(--purple);
+            gap: 1.5rem;
         }
 
-        /* Floating WhatsApp */
-        .wa-float {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: #25D366;
-            color: white;
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.2rem;
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
-            transition: 0.2s;
-            z-index: 99;
+        .legal-links { display: flex; gap: 2rem; }
+        .legal-links a {
+            color: var(--text-muted);
             text-decoration: none;
-            border: 2px solid white;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
         }
-        .wa-float:hover {
-            transform: scale(1.1);
-            background: #20b859;
+        .legal-links a:hover { color: var(--text-main); }
+        .copyright { color: var(--text-muted); font-size: 0.9rem; }
+
+        @media (max-width: 992px) {
+            .step-content { width: 42%; padding: 2rem; }
+            .founder-section { padding: 3rem; }
         }
 
-        @media (max-width: 700px) {
-            .founder {
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg-base);
                 flex-direction: column;
+                gap: 0;
+                border-bottom: 1px solid var(--border-subtle);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease;
             }
-            .page-header h1 {
-                font-size: 2.4rem;
+
+            .nav-links.active { max-height: 300px; }
+            .nav-links li { width: 100%; text-align: center; }
+            .nav-links a { display: block; padding: 1.2rem; border-bottom: 1px solid var(--border-subtle); }
+            .mobile-menu-btn { display: block; margin-left: auto; }
+
+            .timeline-line { left: 30px; transform: none; }
+            .step-node {
+                left: 30px;
+                transform: translate(-50%, -50%);
+                width: 40px; height: 40px;
+                font-size: 1rem;
             }
+            .timeline-step { justify-content: flex-end !important; margin-bottom: 4rem; }
+            .step-content { width: calc(100% - 70px); padding: 1.5rem; }
+
+            .founder-section { padding: 2rem; }
+            .niche-card { flex-direction: column; gap: 1rem; padding: 2rem; text-align: center; align-items: center; }
+            
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .footer-bottom { flex-direction: column; text-align: center; justify-content: center; }
+            .legal-links { justify-content: center; width: 100%; }
         }
     </style>
 </head>
-<body class="light-mode">
-    <!-- WhatsApp floating -->
-    <a href="https://wa.me/94766265730" class="wa-float" target="_blank" aria-label="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+<body>
 
-    <div class="container">
-        <!-- Navbar -->
-        <nav>
-            <div class="logo">
-                <img src="Logo.png" style="height: 100px; width:auto;">
-            </div>
-            <button class="hamburger" id="hamburger" aria-label="Menu">
-                <i class="fas fa-bars"></i>
-            </button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="Home.html">Home</a></li>
-                <li><a href="model.html">Model</a></li>
-                <li><a href="about.html" class="active">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <button id="theme-toggle" aria-label="Toggle theme">
-                <i class="fas fa-sun"></i>
-            </button>
-        </nav>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="Home.html" class="logo" aria-label="Lomit Homepage">
+                    <img src="Logo.png" alt="Lomit Logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'32\'><text x=\'0\' y=\'24\' fill=\'%23fff\' font-family=\'sans-serif\' font-size=\'22\' font-weight=\'bold\' letter-spacing=\'-1\'>LOMIT</text></svg>'">
+                </a>
+                
+                <button class="mobile-menu-btn" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="nav-links">
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="model.html">Model</a></li>
+                    <li><a href="About.html" class="active">About</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-        <!-- Page header -->
-        <section class="page-header">
-            <h1>About <span class="purple">Lomit</span></h1>
-            <p>Founded on precision, driven by purpose. We engineer revenue for digital businesses worldwide.</p>
+    <main>
+        <section class="page-header container">
+            <h1>About <span class="text-accent">Lomit</span></h1>
         </section>
 
-        <!-- Founder summary (concise) -->
-        <section class="founder">
-            <div class="founder-text">
-                <h2>Raaidh Riyaz — founder</h2>
-                <p>After completing A/Ls in biology, chemistry, and physics, and following the passing of my mother, I chose to channel that discipline into building Lomit. What started as a vision to systematise revenue engineering has become a company that treats every client’s pipeline with surgical precision.</p>
-                <p>I’m proving that age is irrelevant when you combine analytical rigour with a genuine desire to fix what’s broken. Lomit is the result of that mindset.</p>
-            </div>
-            <div class="founder-stats">
-                <h3>Quick facts</h3>
-                <div class="stat-item">
-                    <i class="fas fa-map-pin"></i>
-                    <div>
-                        <div class="label">Based in</div>
-                        <div class="value">Sri Lanka, serving globally</div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-bolt"></i>
-                    <div>
-                        <div class="label">Founded</div>
-                        <div class="value">2025</div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-microscope"></i>
-                    <div>
-                        <div class="label">Approach</div>
-                        <div class="value">The doctor model</div>
+        <section class="container about-intro">
+            <p>Lomit is an elite revenue engineering firm operating strictly on the proprietary DDP (Dissect, Diagnose, Prognose) model. We operate securely, fully remotely, and exclusively with a hand-picked roster of clients at any given time.</p>
+            <p>This deliberate exclusivity ensures our undivided operational focus, allowing us to deploy surgical AI and workflow optimizations to deliver the most efficient, high-impact outcomes possible for your digital pipeline.</p>
+        </section>
+
+        <section class="container">
+            <div class="founder-section">
+                <div class="founder-content">
+                    <h2>Raaidh Riyaz</h2>
+                    <h3>Founder & Architect</h3>
+                    <p>After completing advanced studies in fundamental sciences, I chose to channel that rigorous, analytical discipline into building Lomit. What started as a vision to systemize unpredictable revenue environments has evolved into an entity that treats every client’s operational pipeline with absolute surgical precision.</p>
+                    <div class="founder-quote">
+                        "True systemic growth doesn't care about conventional tenure; it responds only to analytical rigor and an uncompromising drive to reconstruct what is fundamentally broken. Lomit is the absolute manifestation of that ethos."
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Mission & Vision cards -->
-        <section class="mission-vision">
-            <div class="mv-card">
-                <i class="fas fa-bullseye"></i>
-                <h2>Mission</h2>
-                <p>To eliminate revenue leakage for service‑based digital businesses through data‑driven autopsies and AI‑powered execution — making growth inevitable, not accidental.</p>
-            </div>
-            <div class="mv-card">
-                <i class="fas fa-eye"></i>
-                <h2>Vision</h2>
-                <p>To become the global standard in revenue engineering, evolving into a fully autonomous AI company that handles 80% of operations, and expanding into AI cybersecurity and systems engineering within a decade.</p>
+        <section class="mission-vision-timeline container">
+            <div class="timeline-container" id="timeline-container">
+                
+                <div class="timeline-line">
+                    <div class="timeline-progress" id="timeline-progress"></div>
+                </div>
+
+                <!-- Mission -->
+                <div class="timeline-step step-1">
+                    <div class="step-node"><i class="fas fa-bullseye"></i></div>
+                    <div class="step-content">
+                        <h2>Mission</h2>
+                        <p>To systematically eliminate revenue leakage for service‑based digital businesses through comprehensive data autopsies and AI‑powered execution frameworks—making sustained growth inevitable, rather than accidental.</p>
+                    </div>
+                </div>
+
+                <!-- Vision -->
+                <div class="timeline-step step-2">
+                    <div class="step-node"><i class="fas fa-eye"></i></div>
+                    <div class="step-content">
+                        <h2>Vision</h2>
+                        <p>To establish the definitive global standard in revenue engineering, evolving into a fully autonomous infrastructure that oversees 80% of operations, and expanding seamlessly into advanced AI cybersecurity and complex systems engineering.</p>
+                    </div>
+                </div>
+
             </div>
         </section>
 
-        <!-- Target markets & niche -->
-        <section class="target-section">
-            <h2>Where we operate & whom we serve</h2>
-            <div class="markets">
-                <span class="market-item"><i class="fas fa-globe-americas"></i> North America</span>
-                <span class="market-item"><i class="fas fa-globe-europe"></i> European Union</span>
-                <span class="market-item"><i class="fas fa-globe-europe"></i> United Kingdom</span>
-                <span class="market-item"><i class="fas fa-globe-asia"></i> UAE</span>
-                <span class="market-item"><i class="fas fa-globe-asia"></i> KSA</span>
-                <span class="market-item"><i class="fas fa-globe-asia"></i> New Zealand</span>
-                <span class="market-item"><i class="fas fa-globe-asia"></i> Australia</span>
+        <section class="markets-section container">
+            <h2 class="section-title">Where We Operate</h2>
+            <div class="markets-grid">
+                <div class="market-pill"><i class="fas fa-globe-americas"></i> North America</div>
+                <div class="market-pill"><i class="fas fa-globe-europe"></i> European Union</div>
+                <div class="market-pill"><i class="fas fa-globe-europe"></i> United Kingdom</div>
+                <div class="market-pill"><i class="fas fa-globe-asia"></i> UAE</div>
+                <div class="market-pill"><i class="fas fa-globe-asia"></i> KSA</div>
+                <div class="market-pill"><i class="fas fa-globe-oceania"></i> New Zealand</div>
+                <div class="market-pill"><i class="fas fa-globe-oceania"></i> Australia</div>
             </div>
+
             <div class="niche-card">
                 <i class="fas fa-briefcase"></i>
-                <h3>Niche</h3>
-                <p>Service‑based digital businesses — agencies, SaaS, e‑commerce brands, and professional services — that rely on predictable revenue pipelines and are ready to embrace automation, AI, and surgical optimisation.</p>
+                <div class="niche-content">
+                    <h3>Our Primary Niche</h3>
+                    <p><strong>Digital Agencies:</strong> We explicitly partner with agencies that are struggling to scale, hitting revenue ceilings, or bogged down by operational drag. We engineer the automated systems and AI infrastructures required to permanently break through that barrier.</p>
+                </div>
             </div>
         </section>
 
-        <!-- Long-term vision teaser (consistent with model page) -->
-        <section class="vision-teaser">
-            <h3>The next decade: an AI‑driven future</h3>
-            <p>Lomit is systematically building towards a future where 80% of tasks are executed by autonomous systems. From revenue engineering to AI cybersecurity and systems engineering, the doctor model will scale without losing its human‑centred precision.</p>
+        <section class="future-card-container container">
+            <div class="future-card">
+                <!-- Shooting stars injected via CSS animation -->
+                <div class="shooting-star"></div>
+                <div class="shooting-star"></div>
+                <div class="shooting-star"></div>
+                
+                <div class="future-card-content">
+                    <h3>The Next Decade: An AI‑Driven Future</h3>
+                    <p>Lomit is systematically building towards a paradigm where the vast majority of operational friction is eliminated by autonomous systems. From high-level revenue engineering to AI-driven cybersecurity, the DDP model will scale without compromising its rigorous precision.</p>
+                </div>
+            </div>
         </section>
+    </main>
 
-        <!-- Call to action -->
-        <section class="cta-section">
-            <a href="Contact.html" class="cta-button">Book your free revenue audit</a>
-        </section>
-    </div>
-
-    <!-- Footer -->
     <footer>
-        <div class="container footer-content">
-            <p>© 2025 Lomit. All rights reserved. — Sri Lanka</p>
-            <div class="footer-links">
-                <a href="#" aria-label="Email"><i class="far fa-envelope"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+        <div class="container">
+            <div class="footer-grid">
+                
+                <div class="footer-info">
+                    <h4>Lomit Revenue Engineering</h4>
+                    <p>We build and deploy systems that scale businesses intelligently. Driven strictly by data, executed with precision.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h5>Headquarters</h5>
+                    <ul class="footer-text-list">
+                        <li>Kandy</li>
+                        <li>Central Province</li>
+                        <li>Sri Lanka</li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2026 Lomit. All rights reserved.</p>
+                
+                <div class="legal-links">
+                    <a href="PP.html">Privacy Policy</a>
+                    <a href="ToS.html">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        (function() {
-            const body = document.body;
-            const themeBtn = document.getElementById('theme-toggle');
-            const icon = themeBtn.querySelector('i');
-            const hamburger = document.getElementById('hamburger');
-            const navLinks = document.getElementById('navLinks');
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle logic
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            const icon = mobileBtn.querySelector('i');
 
-            // Theme
-            const savedTheme = localStorage.getItem('lomitTheme');
-            if (savedTheme) {
-                body.className = savedTheme;
-                updateIcon(savedTheme);
-            } else {
-                body.className = 'light-mode';
-                updateIcon('light-mode');
-            }
-
-            function updateIcon(theme) {
-                icon.className = theme === 'light-mode' ? 'fas fa-sun' : 'fas fa-moon';
-            }
-
-            themeBtn.addEventListener('click', () => {
-                if (body.classList.contains('light-mode')) {
-                    body.classList.replace('light-mode', 'dark-mode');
-                    localStorage.setItem('lomitTheme', 'dark-mode');
-                    updateIcon('dark-mode');
+            mobileBtn.addEventListener('click', () => {
+                const isOpen = navLinks.classList.toggle('active');
+                if(isOpen) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
                 } else {
-                    body.classList.replace('dark-mode', 'light-mode');
-                    localStorage.setItem('lomitTheme', 'light-mode');
-                    updateIcon('light-mode');
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
                 }
             });
 
-            // Mobile menu
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('show');
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('nav') && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
             });
 
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('show');
+            // Interactive Timeline Scroll Logic (Matching the DDP Model Page)
+            const steps = document.querySelectorAll('.timeline-step');
+            const progressBar = document.getElementById('timeline-progress');
+            const timelineContainer = document.getElementById('timeline-container');
+
+            function handleScroll() {
+                if (!timelineContainer) return;
+                
+                const containerRect = timelineContainer.getBoundingClientRect();
+                const containerTop = containerRect.top;
+                const containerHeight = containerRect.height;
+                const windowHeight = window.innerHeight;
+                
+                const scrollTriggerPoint = windowHeight * 0.6; 
+                
+                let progressPercentage = 0;
+
+                if (containerTop < scrollTriggerPoint) {
+                    const distancePastTrigger = scrollTriggerPoint - containerTop;
+                    progressPercentage = (distancePastTrigger / containerHeight) * 100;
+                    progressPercentage = Math.max(0, Math.min(100, progressPercentage));
+                }
+
+                progressBar.style.height = `${progressPercentage}%`;
+
+                steps.forEach((step, index) => {
+                    const stepRect = step.getBoundingClientRect();
+                    const stepTop = stepRect.top;
+                    
+                    if (stepTop < windowHeight * 0.75) {
+                        step.classList.add('is-visible');
+                        
+                        const stepRelativePosition = ((index + 0.5) / steps.length) * 100;
+                        if(progressPercentage > stepRelativePosition - 15) {
+                             step.classList.add('is-active');
+                        }
+                    }
                 });
-            });
-        })();
+            }
+
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            setTimeout(handleScroll, 100); 
+        });
     </script>
-    <!-- Replace placeholder logo with your actual PNG -->
 </body>
 </html>
