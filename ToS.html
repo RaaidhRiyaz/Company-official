@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Lomit</title>
+    <link rel="icon" type="image/png" href="favicon-96x96.png">
+    
+    <meta name="description" content="Lomit Terms of Service. Legal agreement for website usage and consulting engagements under the Dissect-Diagnose-Prognose framework.">
+    
+    <!-- Preconnect Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        :root {
+            --bg-base: #050505;
+            --bg-surface: #0f0f0f;
+            --bg-surface-hover: #171717;
+            
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+            --text-body: #e5e7eb;
+            
+            --accent-primary: #a855f7; /* Vibrant Purple */
+            --accent-deep: #7c3aed;
+            --accent-glow: rgba(168, 85, 247, 0.25);
+            
+            --border-subtle: #222222;
+            --border-highlight: rgba(168, 85, 247, 0.4);
+            
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            position: relative;
+        }
+
+        ::selection {
+            background: var(--accent-deep);
+            color: #fff;
+        }
+
+        /* Dynamic Starfield Canvas */
+        #space-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Top Action Bar (Back button + Logo, No standard navbar) */
+        .top-bar {
+            padding: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 10;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(15, 15, 15, 0.8);
+            color: var(--text-main);
+            border: 1px solid var(--border-subtle);
+            padding: 0.75rem 1.4rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: var(--transition-smooth);
+        }
+
+        .back-btn i {
+            color: var(--accent-primary);
+            transition: transform 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--bg-surface-hover);
+            border-color: var(--accent-primary);
+            color: #ffffff;
+            box-shadow: 0 0 15px var(--accent-glow);
+            transform: translateX(-3px);
+        }
+
+        .back-btn:hover i {
+            transform: translateX(-3px);
+        }
+
+        .brand-logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+            opacity: 0.95;
+        }
+
+        /* Header Card */
+        .tos-header {
+            margin-top: 1rem;
+            margin-bottom: 2.5rem;
+            padding: 3.5rem 3rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+
+        .tos-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+        }
+
+        .tos-header h1 {
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .tos-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 720px;
+        }
+
+        .meta-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .meta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(168, 85, 247, 0.08);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            color: var(--text-main);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .meta-badge i {
+            color: var(--accent-primary);
+        }
+
+        /* Main Content Styling */
+        .tos-body {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 6rem;
+        }
+
+        .tos-section {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 1.25rem;
+            padding: 2.5rem 3rem;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .tos-section:hover {
+            border-color: var(--border-highlight);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        .tos-section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tos-section p {
+            color: var(--text-body);
+            font-size: 1rem;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+
+        .tos-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .tos-section ul {
+            list-style: none;
+            margin: 1rem 0 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .tos-section ul li {
+            position: relative;
+            padding-left: 1.75rem;
+            color: var(--text-body);
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        .tos-section ul li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0.15rem;
+            color: var(--accent-primary);
+            font-size: 0.85rem;
+        }
+
+        .contact-box {
+            background: rgba(168, 85, 247, 0.05);
+            border: 1px solid var(--border-highlight);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 1.25rem;
+        }
+
+        .contact-box p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-box a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+        }
+
+        .contact-box a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: #020202;
+            border-top: 1px solid var(--border-subtle);
+            padding: 4rem 0 3rem 0;
+            margin-top: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-info h4 {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+
+        .footer-section h5 {
+            color: var(--text-main);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-text-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .footer-text-list li {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .legal-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .legal-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+        }
+
+        .legal-links a:hover, .legal-links a.active {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 1.25rem; }
+            .tos-header { padding: 2.5rem 1.5rem; }
+            .tos-section { padding: 2rem 1.5rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .legal-links { justify-content: center; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="space-canvas"></canvas>
+
+    <div class="container">
+        
+        <div class="top-bar">
+            <button onclick="goBack()" class="back-btn" aria-label="Go Back">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back</span>
+            </button>
+
+            <a href="index.html" class="brand-logo" aria-label="Lomit Homepage">
+                <img src="Logo.png" alt="Lomit Logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'32\'><text x=\'0\' y=\'24\' fill=\'%23a855f7\' font-family=\'sans-serif\' font-size=\'22\' font-weight=\'bold\' letter-spacing=\'-1\'>LOMIT</text></svg>'">
+            </a>
+        </div>
+
+        <!-- Terms Header Card -->
+        <header class="tos-header">
+            <h1><i class="fas fa-file-contract"></i> Terms of Service</h1>
+            <p>Welcome to Lomit. The legal terms governing your use of lomit.digital and our Dissect-Diagnose-Prognose revenue engineering engagements.</p>
+            
+            <div class="meta-badges">
+                <div class="meta-badge">
+                    <i class="far fa-calendar-check"></i>
+                    <span>Effective Date: 12/01/2026</span>
+                </div>
+                <div class="meta-badge">
+                    <i class="far fa-clock"></i>
+                    <span>Last Updated: 07/09/2026</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="tos-body">
+
+            <!-- Section 1 -->
+            <section class="tos-section">
+                <h2>1. Introduction and Acceptance</h2>
+                <p>These Terms and Conditions ("Terms") govern your access to and use of the website <strong>lomit.digital</strong> (the "Website") operated by <strong>Lomit</strong> ("we," "us," or "our"), as well as any engagement for professional consulting services under our Dissect-Diagnose-Prognose (DDP) model.</p>
+                <p>By accessing or using the Website, submitting an inquiry, booking a call, or engaging our services, you ("Client," "you," or "your") agree to be bound by these Terms and our Privacy Policy. If you do not agree, you must not use the Website or engage our services.</p>
+                <p>These Terms form a legally binding agreement. Specific service engagements (Revenue Analysis Audits and retainer arrangements) will be further governed by separate written proposals, statements of work, or engagement letters, which incorporate these Terms by reference unless expressly modified in writing.</p>
+            </section>
+
+            <!-- Section 2 -->
+            <section class="tos-section">
+                <h2>2. Description of Services</h2>
+                <p>We provide professional consulting services focused on revenue pipeline analysis and optimization through the DDP model:</p>
+                <ul>
+                    <li><strong>Dissection:</strong> Systematic examination of the Client's revenue pipeline, systems, and related data.</li>
+                    <li><strong>Diagnosis:</strong> Preparation and presentation of a Revenue Analysis Audit identifying inefficiencies, cash-flow leakage, performance gaps, and related issues.</li>
+                    <li><strong>Prognosis:</strong> Delivery of personalized solutions under a retainer-based engagement targeting identified inefficiencies.</li>
+                </ul>
+                <p>The Website serves as an informational and lead-generation platform. Services are delivered offline or via agreed remote methods following formal engagement. Website content is for general information only and does not constitute advice, an offer, or a guarantee of results.</p>
+            </section>
+
+            <!-- Section 3 -->
+            <section class="tos-section">
+                <h2>3. Eligibility and Account Use</h2>
+                <p>You represent that you are at least 18 years of age and have the legal authority to enter into these Terms on behalf of yourself or the entity you represent. You agree to provide accurate, current, and complete information when contacting us or engaging services, and to update such information as necessary.</p>
+                <p>You are responsible for maintaining the confidentiality of any login credentials or access details provided and for all activities under your account or engagement.</p>
+            </section>
+
+            <!-- Section 4 -->
+            <section class="tos-section">
+                <h2>4. Client Responsibilities</h2>
+                <p>The Client agrees to:</p>
+                <ul>
+                    <li>Provide timely, accurate, and complete information, data, and access reasonably required for the Dissection and Diagnosis stages.</li>
+                    <li>Ensure that any data or materials supplied do not infringe third-party rights and that the Client has authority to share them.</li>
+                    <li>Designate a primary contact with decision-making authority.</li>
+                    <li>Review and provide feedback on deliverables within agreed timeframes.</li>
+                    <li>Pay all fees in accordance with the applicable engagement terms.</li>
+                    <li>Use deliverables solely for the Client's internal business purposes unless otherwise agreed in writing.</li>
+                </ul>
+                <p>Failure to fulfill these responsibilities may result in delays, additional fees, suspension of services, or termination of the engagement without liability on our part for incomplete results.</p>
+            </section>
+
+            <!-- Section 5 -->
+            <section class="tos-section">
+                <h2>5. Fees, Payment, and Cancellation</h2>
+                <p>Fees for the Revenue Analysis Audit and any subsequent retainer are set out in the applicable proposal or engagement letter. Both stages are separately chargeable. The Audit functions as a paid diagnostic service and a qualification filter for retainer clients.</p>
+                <p>Payment terms, including any deposits, installment schedules, or retainer billing cycles, will be specified in the engagement documentation. Invoices are due as stated therein. Late payments may incur interest at the maximum rate permitted by law and may result in suspension of services until amounts are paid in full.</p>
+                <p>Fees are non-refundable except as expressly stated in the engagement letter or required by applicable law. Cancellation or termination by the Client prior to completion of agreed work may require payment for services rendered plus any applicable cancellation fee as set out in the engagement documents.</p>
+            </section>
+
+            <!-- Section 6 -->
+            <section class="tos-section">
+                <h2>6. Intellectual Property</h2>
+                <p>We retain all right, title, and interest in and to our pre-existing intellectual property, including methodologies, frameworks, tools, templates, processes, know-how, and the DDP model itself ("Our IP").</p>
+                <p>Upon full payment of applicable fees, the Client receives a non-exclusive, non-transferable, royalty-free license to use the final deliverables prepared specifically for the Client (such as the Revenue Analysis Audit report and customized recommendations) solely for the Client's internal business purposes. The Client does not acquire ownership of Our IP or any modifications, derivatives, or enhancements thereto.</p>
+                <p>We may use anonymized or aggregated insights derived from engagements for internal improvement, training, or marketing purposes, provided no Client-identifiable confidential information is disclosed.</p>
+            </section>
+
+            <!-- Section 7 -->
+            <section class="tos-section">
+                <h2>7. Confidentiality</h2>
+                <p>Each party agrees to keep confidential all non-public information received from the other party in connection with the Website or any engagement, including business, financial, operational, and technical data. Confidential information shall not be disclosed to third parties except as necessary to perform obligations under these Terms or an engagement agreement, or as required by law.</p>
+                <p>This obligation survives termination of any engagement for a period of three (3) years, or longer if required by the nature of the information or applicable law. Our confidentiality obligations regarding Client data are further detailed in our Privacy Policy and any engagement-specific non-disclosure provisions.</p>
+            </section>
+
+            <!-- Section 8 -->
+            <section class="tos-section">
+                <h2>8. Disclaimers and No Guarantees</h2>
+                <p>Services are provided on an "as is" and "as available" basis. We make no warranties, express or implied, regarding the Website or services, including warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
+                <p>We do not guarantee specific financial outcomes, revenue increases, cost savings, ROI improvements, or the complete identification or resolution of all inefficiencies. Results depend on the accuracy and completeness of Client-provided data, timely cooperation, market conditions, and the Client's subsequent implementation of recommendations. The Revenue Analysis Audit is a diagnostic tool; implementation responsibility and outcomes rest with the Client.</p>
+                <p>Website content is general in nature and does not constitute professional, financial, legal, or tax advice. Independent professional advice should be sought where appropriate.</p>
+            </section>
+
+            <!-- Section 9 -->
+            <section class="tos-section">
+                <h2>9. Limitation of Liability</h2>
+                <p>To the maximum extent permitted by applicable law:</p>
+                <ul>
+                    <li>Our total aggregate liability arising out of or relating to these Terms, the Website, or any services shall not exceed the total fees actually paid by the Client to us under the relevant engagement during the twelve (12) months preceding the claim.</li>
+                    <li>We shall not be liable for any indirect, incidental, special, consequential, punitive, or exemplary damages, including lost profits, lost revenue, lost data, business interruption, or reputational harm, even if advised of the possibility of such damages.</li>
+                </ul>
+                <p>These limitations apply regardless of the form of action (contract, tort, negligence, strict liability, or otherwise). Some jurisdictions do not allow certain limitations; in such cases, our liability is limited to the fullest extent permitted by law.</p>
+            </section>
+
+            <!-- Section 10 -->
+            <section class="tos-section">
+                <h2>10. Indemnification</h2>
+                <p>The Client agrees to indemnify, defend, and hold harmless Lomit, its officers, directors, employees, and agents from and against any claims, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of or related to:</p>
+                <ul>
+                    <li>(a) The Client's breach of these Terms or any engagement agreement;</li>
+                    <li>(b) The Client's provision of inaccurate or unauthorized data;</li>
+                    <li>(c) The Client's use or implementation of deliverables; or</li>
+                    <li>(d) Any third-party claim arising from the Client's business operations or decisions based on our services.</li>
+                </ul>
+            </section>
+
+            <!-- Section 11 -->
+            <section class="tos-section">
+                <h2>11. Termination</h2>
+                <p>Either party may terminate an engagement in accordance with the terms of the applicable engagement letter (typically upon written notice of a specified period). We may suspend or terminate access to the Website or services immediately for material breach, non-payment, or misuse.</p>
+                <p>Upon termination, the Client remains obligated to pay for all services rendered and work performed up to the effective date of termination. Provisions that by their nature should survive (including intellectual property, confidentiality, limitation of liability, and indemnification) shall survive termination.</p>
+            </section>
+
+            <!-- Section 12 -->
+            <section class="tos-section">
+                <h2>12. Acceptable Use of the Website</h2>
+                <p>You agree not to:</p>
+                <ul>
+                    <li>Use the Website for any unlawful purpose or in violation of these Terms.</li>
+                    <li>Attempt to gain unauthorized access to any systems, data, or accounts.</li>
+                    <li>Interfere with or disrupt the Website or related servers.</li>
+                    <li>Scrape, harvest, or collect data from the Website without our prior written consent.</li>
+                    <li>Transmit malware, spam, or other harmful material.</li>
+                    <li>Misrepresent your identity or affiliation.</li>
+                </ul>
+                <p>We reserve the right to suspend or terminate access for violations without notice.</p>
+            </section>
+
+            <!-- Section 13 -->
+            <section class="tos-section">
+                <h2>13. Third-Party Links and Services</h2>
+                <p>The Website may contain links to third-party websites or services. We are not responsible for the content, privacy practices, or terms of those third parties. Access is at your own risk.</p>
+            </section>
+
+            <!-- Section 14 -->
+            <section class="tos-section">
+                <h2>14. Amendments</h2>
+                <p>We may update these Terms from time to time. The updated version will be posted on the Website with a revised "Last Updated" date. Material changes will be indicated by appropriate notice. Continued use of the Website or services after the effective date constitutes acceptance of the revised Terms. Engagement-specific terms may only be modified by written agreement signed by both parties.</p>
+            </section>
+
+            <!-- Section 15 -->
+            <section class="tos-section">
+                <h2>15. Governing Law and Dispute Resolution</h2>
+                <p>These Terms shall be governed by and construed in accordance with the laws of the Democratic Socialist Republic of Sri Lanka.</p>
+                <p>Any dispute arising out of or relating to these Terms or any services shall first be attempted to be resolved through good-faith negotiation. If unresolved, the dispute shall be submitted to binding arbitration in accordance with the rules of Sri Lankan law, conducted in Colombo. Judgment upon the award may be entered in any court of competent jurisdiction. Either party may seek interim injunctive relief in a court of competent jurisdiction to protect intellectual property or confidential information.</p>
+            </section>
+
+            <!-- Section 16 -->
+            <section class="tos-section">
+                <h2>16. Miscellaneous</h2>
+                <ul>
+                    <li><strong>Severability:</strong> If any provision is held invalid or unenforceable, the remaining provisions shall continue in full force and effect.</li>
+                    <li><strong>Entire Agreement:</strong> These Terms, together with the Privacy Policy and any applicable engagement documents, constitute the entire agreement between the parties concerning the subject matter and supersede all prior discussions.</li>
+                    <li><strong>Waiver:</strong> Failure to enforce any provision shall not constitute a waiver of that or any other provision.</li>
+                    <li><strong>Assignment:</strong> You may not assign these Terms without our prior written consent. We may assign them in connection with a corporate transaction.</li>
+                    <li><strong>Force Majeure:</strong> Neither party shall be liable for delays or failures due to circumstances beyond reasonable control.</li>
+                    <li><strong>Notices:</strong> Formal notices shall be sent in writing to the addresses provided in the engagement documents or via email with confirmation of receipt.</li>
+                </ul>
+            </section>
+
+            <!-- Section 17 -->
+            <section class="tos-section">
+                <h2>17. Contact Information</h2>
+                <p>For questions regarding these Terms, please contact us directly:</p>
+                
+                <div class="contact-box">
+                    <p><strong>Lomit Revenue Engineering</strong></p>
+                    <p>Direct Email: <a href="mailto:raaidh@lomit.digital">raaidh@lomit.digital</a></p>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">We reply promptly to inquiries regarding our legal agreements and service contracts.</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                
+                <div class="footer-info">
+                    <h4>Lomit Revenue Engineering</h4>
+                    <p>We build and deploy systems that scale businesses intelligently. Driven strictly by data, executed with precision.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h5>Headquarters</h5>
+                    <ul class="footer-text-list">
+                        <li>Kandy</li>
+                        <li>Central Province</li>
+                        <li>Sri Lanka</li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2026 Lomit. All rights reserved.</p>
+                
+                <div class="legal-links">
+                    <a href="PP.html">Privacy Policy</a>
+                    <a href="ToS.html" class="active">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Functional Back Navigation
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Dynamic Space Background with Twinkling Stars & Shooting Stars
+        const canvas = document.getElementById('space-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let stars = [];
+        let shootingStars = [];
+
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initStars();
+        }
+
+        class Star {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 1.8 + 0.4;
+                this.alpha = Math.random();
+                this.speed = Math.random() * 0.015 + 0.005;
+                this.increasing = Math.random() > 0.5;
+            }
+
+            update() {
+                if (this.increasing) {
+                    this.alpha += this.speed;
+                    if (this.alpha >= 0.95) this.increasing = false;
+                } else {
+                    this.alpha -= this.speed;
+                    if (this.alpha <= 0.1) this.increasing = true;
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        class ShootingStar {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * (height * 0.5);
+                this.length = Math.random() * 80 + 50;
+                this.speed = Math.random() * 8 + 4;
+                this.angle = Math.PI / 4; // 45-degree trajectory
+                this.opacity = 1;
+                this.width = Math.random() * 1.5 + 0.8;
+                this.active = true;
+            }
+
+            update() {
+                this.x += Math.cos(this.angle) * this.speed;
+                this.y += Math.sin(this.angle) * this.speed;
+                this.opacity -= 0.015;
+
+                if (this.opacity <= 0 || this.x > width || this.y > height) {
+                    this.active = false;
+                }
+            }
+
+            draw() {
+                if (!this.active) return;
+
+                const tailX = this.x - Math.cos(this.angle) * this.length;
+                const tailY = this.y - Math.sin(this.angle) * this.length;
+
+                const gradient = ctx.createLinearGradient(this.x, this.y, tailX, tailY);
+                gradient.addColorStop(0, `rgba(168, 85, 247, ${this.opacity})`);
+                gradient.addColorStop(0.3, `rgba(255, 255, 255, ${this.opacity * 0.8})`);
+                gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = this.width;
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(tailX, tailY);
+                ctx.stroke();
+            }
+        }
+
+        function initStars() {
+            stars = [];
+            const count = Math.floor((width * height) / 4000);
+            for (let i = 0; i < count; i++) {
+                stars.push(new Star());
+            }
+        }
+
+        function spawnShootingStar() {
+            if (Math.random() < 0.03 && shootingStars.length < 3) {
+                shootingStars.push(new ShootingStar());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Render Twinkling Stars
+            for (let star of stars) {
+                star.update();
+                star.draw();
+            }
+
+            // Render Shooting Stars
+            spawnShootingStar();
+            for (let i = shootingStars.length - 1; i >= 0; i--) {
+                const ss = shootingStars[i];
+                ss.update();
+                ss.draw();
+                if (!ss.active) {
+                    shootingStars.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        
+        window.onload = function() {
+            resizeCanvas();
+            animate();
+        };
+    </script>
+</body>
+</html>
