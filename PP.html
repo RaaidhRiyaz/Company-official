@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Lomit</title>
+    <link rel="icon" type="image/png" href="favicon-96x96.png">
+    
+    <meta name="description" content="Lomit Privacy Policy. Details on how we collect, use, and protect your personal and business data.">
+    
+    <!-- Preconnect Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" xintegrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        :root {
+            --bg-base: #050505;
+            --bg-surface: #0f0f0f;
+            --bg-surface-hover: #171717;
+            
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+            --text-body: #e5e7eb;
+            
+            --accent-primary: #a855f7; /* Vibrant Purple */
+            --accent-deep: #7c3aed;
+            --accent-glow: rgba(168, 85, 247, 0.25);
+            
+            --border-subtle: #222222;
+            --border-highlight: rgba(168, 85, 247, 0.4);
+            
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            position: relative;
+        }
+
+        ::selection {
+            background: var(--accent-deep);
+            color: #fff;
+        }
+
+        /* Fullscreen Space Canvas Background */
+        #space-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Top Action Bar (No standard navbar, strictly Back button + Brand mark) */
+        .top-bar {
+            padding: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 10;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(15, 15, 15, 0.8);
+            color: var(--text-main);
+            border: 1px solid var(--border-subtle);
+            padding: 0.75rem 1.4rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: var(--transition-smooth);
+        }
+
+        .back-btn i {
+            color: var(--accent-primary);
+            transition: transform 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--bg-surface-hover);
+            border-color: var(--accent-primary);
+            color: #ffffff;
+            box-shadow: 0 0 15px var(--accent-glow);
+            transform: translateX(-3px);
+        }
+
+        .back-btn:hover i {
+            transform: translateX(-3px);
+        }
+
+        .brand-logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+            opacity: 0.95;
+        }
+
+        /* Policy Header Card */
+        .policy-header {
+            margin-top: 1rem;
+            margin-bottom: 2.5rem;
+            padding: 3.5rem 3rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+
+        .policy-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+        }
+
+        .policy-header h1 {
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .policy-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 700px;
+        }
+
+        .meta-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .meta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(168, 85, 247, 0.08);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            color: var(--text-main);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .meta-badge i {
+            color: var(--accent-primary);
+        }
+
+        /* Document Body Container */
+        .policy-body {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 6rem;
+        }
+
+        .policy-section {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 1.25rem;
+            padding: 2.5rem 3rem;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .policy-section:hover {
+            border-color: var(--border-highlight);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        .policy-section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .policy-section h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 1.5rem 0 0.75rem 0;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px dashed var(--border-subtle);
+        }
+
+        .policy-section p {
+            color: var(--text-body);
+            font-size: 1rem;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+
+        .policy-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .policy-section ul {
+            list-style: none;
+            margin: 1rem 0 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .policy-section ul li {
+            position: relative;
+            padding-left: 1.75rem;
+            color: var(--text-body);
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        .policy-section ul li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0.15rem;
+            color: var(--accent-primary);
+            font-size: 0.85rem;
+        }
+
+        .contact-box {
+            background: rgba(168, 85, 247, 0.05);
+            border: 1px solid var(--border-highlight);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 1.25rem;
+        }
+
+        .contact-box p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-box a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+        }
+
+        .contact-box a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: #020202;
+            border-top: 1px solid var(--border-subtle);
+            padding: 4rem 0 3rem 0;
+            margin-top: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-info h4 {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+
+        .footer-section h5 {
+            color: var(--text-main);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-text-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .footer-text-list li {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .legal-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .legal-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+        }
+
+        .legal-links a:hover, .legal-links a.active {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 1.25rem; }
+            .policy-header { padding: 2.5rem 1.5rem; }
+            .policy-section { padding: 2rem 1.5rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .legal-links { justify-content: center; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dynamic Space Background with Twinkling Stars & Shooting Stars -->
+    <canvas id="space-canvas"></canvas>
+
+    <div class="container">
+        
+        <!-- Top Navigation Bar (Strictly Back Button + Brand Logo) -->
+        <div class="top-bar">
+            <button onclick="goBack()" class="back-btn" aria-label="Go Back">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back</span>
+            </button>
+
+            <a href="index.html" class="brand-logo" aria-label="Lomit Homepage">
+                <img src="Logo.png" alt="Lomit Logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'32\'><text x=\'0\' y=\'24\' fill=\'%23a855f7\' font-family=\'sans-serif\' font-size=\'22\' font-weight=\'bold\' letter-spacing=\'-1\'>LOMIT</text></svg>'">
+            </a>
+        </div>
+
+        <!-- Policy Header Card -->
+        <header class="policy-header">
+            <h1><i class="fas fa-shield-halved"></i> Privacy Policy</h1>
+            <p>Transparency, precision, and data sovereignty. Learn how Lomit handles personal information and client business intelligence under the Dissect-Diagnose-Prognose framework.</p>
+            
+            <div class="meta-badges">
+                <div class="meta-badge">
+                    <i class="far fa-calendar-check"></i>
+                    <span>Effective Date: 12/01/2026</span>
+                </div>
+                <div class="meta-badge">
+                    <i class="far fa-clock"></i>
+                    <span>Last Updated: 07/09/2026</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Body -->
+        <main class="policy-body">
+
+            <!-- Section 1 -->
+            <section class="policy-section">
+                <h2>1. Introduction</h2>
+                <p>This Privacy Policy describes how <strong>Lomit</strong> ("we," "us," or "our"), operating the website <strong>lomit.digital</strong> and providing professional consulting services under the <strong>Dissect-Diagnose-Prognose (DDP)</strong> model, collects, uses, discloses, retains, and protects personal information and client business data.</p>
+                <p>We act as a premium-tier consulting firm that conducts revenue pipeline audits and delivers retainer-based solutions. We are committed to protecting the privacy and confidentiality of website visitors, prospective clients, and engaged clients. We do not sell personal information. This Policy is designed to comply with applicable data protection laws, including the EU General Data Protection Regulation (GDPR), the UK GDPR, the California Consumer Privacy Act as amended by the California Privacy Rights Act (CCPA/CPRA), and other applicable U.S. state privacy laws.</p>
+                <p>By accessing our website or engaging our services, you acknowledge that you have read and understood this Policy. If you do not agree, please do not use our website or services.</p>
+            </section>
+
+            <!-- Section 2 -->
+            <section class="policy-section">
+                <h2>2. Scope</h2>
+                <p>This Policy applies to:</p>
+                <ul>
+                    <li>Visitors to our website</li>
+                    <li>Individuals who submit inquiries, contact forms, or book discovery/audit calls</li>
+                    <li>Prospective and engaged clients (and their representatives) who provide information in connection with Revenue Analysis Audits or retainer engagements</li>
+                    <li>Any personal information we process in the course of delivering our services</li>
+                </ul>
+                <p>This Policy does not apply to third-party websites or services that may be linked from our site. We are not responsible for the privacy practices of those third parties.</p>
+                <p>Client confidential business, financial, and operational information provided under engagement is additionally protected by the terms of our engagement agreements, non-disclosure agreements, and professional confidentiality obligations.</p>
+            </section>
+
+            <!-- Section 3 -->
+            <section class="policy-section">
+                <h2>3. Information We Collect</h2>
+                <p>We collect only the information reasonably necessary for the purposes described in this Policy.</p>
+
+                <h3>A. Information You Provide Directly</h3>
+                <ul>
+                    <li><strong>Contact and identification details:</strong> name, email address, telephone number, company name, job title, and business address.</li>
+                    <li><strong>Inquiry and engagement information:</strong> details submitted via contact forms, email, or discovery calls regarding your business and revenue pipeline.</li>
+                    <li><strong>Client engagement data:</strong> financial, operational, systems, marketing, and performance information provided for Dissection, Diagnosis (Revenue Analysis Audit), and Prognosis (retainer solutions).</li>
+                    <li><strong>Payment and billing information:</strong> processed via third-party payment processors; we do not store full payment card details.</li>
+                    <li><strong>Communications:</strong> records of correspondence, meeting notes, and feedback.</li>
+                </ul>
+
+                <h3>B. Information Collected Automatically</h3>
+                <ul>
+                    <li><strong>Device and technical data:</strong> IP address, browser type, operating system, device identifiers, referring URLs, and pages visited.</li>
+                    <li><strong>Usage data:</strong> time spent on pages, navigation paths, and interaction with website features.</li>
+                    <li><strong>Cookies and tracking:</strong> see Section 8 for details.</li>
+                </ul>
+
+                <h3>C. Information from Third Parties</h3>
+                <ul>
+                    <li>Publicly available business information or data provided by referral sources, with appropriate notice where required.</li>
+                    <li>Information from service providers (e.g., analytics or CRM tools) solely as necessary for our operations.</li>
+                </ul>
+                <p>We do not intentionally collect special-category data (e.g., health, biometric, or precise geolocation data) unless explicitly required for a specific engagement and with appropriate safeguards and consent or other lawful basis.</p>
+            </section>
+
+            <!-- Section 4 -->
+            <section class="policy-section">
+                <h2>4. How We Use Information</h2>
+                <p>We process personal information for the following purposes and on the following legal bases (where GDPR or equivalent applies):</p>
+                <ul>
+                    <li>To respond to inquiries, schedule calls, and provide information about our services (legitimate interests or pre-contractual steps).</li>
+                    <li>To perform Revenue Analysis Audits and deliver retainer-based solutions under the DDP model (performance of a contract).</li>
+                    <li>To manage client relationships, billing, and communications (performance of a contract and legitimate interests).</li>
+                    <li>To improve our website, services, and internal processes through analytics (legitimate interests, with consent where required for non-essential cookies).</li>
+                    <li>To detect, prevent, and address security incidents or fraud (legitimate interests and legal obligation).</li>
+                    <li>To comply with legal, regulatory, or professional obligations (legal obligation).</li>
+                    <li>To send relevant service-related or marketing communications (consent or legitimate interests, with opt-out available at any time).</li>
+                </ul>
+                <p>We do not use personal information for automated decision-making that produces legal or similarly significant effects without appropriate human involvement and disclosure.</p>
+            </section>
+
+            <!-- Section 5 -->
+            <section class="policy-section">
+                <h2>5. Disclosure of Information</h2>
+                <p>We do not sell, rent, or trade personal information.</p>
+                <p>We may disclose information only in the following limited circumstances:</p>
+                <ul>
+                    <li><strong>To service providers and processors:</strong> third parties who assist us in operating our business (e.g., website hosting, CRM, email delivery, payment processing, analytics, or secure file storage). These parties are contractually bound to process data only on our instructions, maintain confidentiality, and implement appropriate security measures. Where required, we enter into Data Processing Agreements.</li>
+                    <li><strong>To professional advisers:</strong> legal, accounting, or insurance professionals under strict confidentiality obligations.</li>
+                    <li><strong>For legal protection:</strong> when required by law, court order, or governmental authority, or to protect our rights, property, or safety, or that of our clients or others.</li>
+                    <li><strong>In business transfers:</strong> in connection with a corporate transaction (e.g., merger or acquisition), subject to appropriate confidentiality protections.</li>
+                    <li><strong>With explicit consent:</strong> when you explicitly direct us to share specific details.</li>
+                </ul>
+                <p>Client confidential business data provided during engagements is shared only as necessary to deliver the agreed services and is subject to the confidentiality terms of the engagement agreement.</p>
+            </section>
+
+            <!-- Section 6 -->
+            <section class="policy-section">
+                <h2>6. Data Security</h2>
+                <p>We implement appropriate technical and organizational measures designed to protect personal information and client data against unauthorized access, loss, alteration, or disclosure. These measures include access controls, encryption in transit and at rest where appropriate, secure storage practices, staff training on confidentiality, and regular review of our security posture.</p>
+                <p>No method of transmission or storage is completely secure. While we strive to protect your information, we cannot guarantee absolute security. In the event of a data incident that poses a risk to your rights, we will notify affected individuals and relevant authorities as required by applicable law.</p>
+            </section>
+
+            <!-- Section 7 -->
+            <section class="policy-section">
+                <h2>7. Data Retention</h2>
+                <p>We retain personal information only for as long as necessary to fulfill the purposes for which it was collected, including:</p>
+                <ul>
+                    <li><strong>Inquiry and lead data:</strong> for a reasonable period after last contact, or longer if required for legitimate business or legal purposes.</li>
+                    <li><strong>Client engagement records and audit data:</strong> for the duration of the engagement plus a period thereafter as required by contract, professional standards, tax, or legal obligations (typically several years).</li>
+                    <li><strong>Website analytics data:</strong> in accordance with the retention settings of our analytics tools (commonly 14–26 months).</li>
+                    <li><strong>Marketing communications data:</strong> until you opt out or we determine the data is no longer needed.</li>
+                </ul>
+                <p>When retention is no longer required, we securely delete or anonymize the data.</p>
+            </section>
+
+            <!-- Section 8 -->
+            <section class="policy-section">
+                <h2>8. Cookies and Tracking Technologies</h2>
+                <p>Our website may use cookies and similar technologies to enable core functionality, analyze usage, and improve user experience. Essential cookies are necessary for the site to function. Non-essential cookies (e.g., analytics or marketing) are used only with your consent where required by law.</p>
+                <p>You may manage cookie preferences through your browser settings or any cookie consent mechanism we provide. Disabling certain cookies may affect site functionality.</p>
+            </section>
+
+            <!-- Section 9 -->
+            <section class="policy-section">
+                <h2>9. International Data Transfers</h2>
+                <p>If you are located outside the country in which we operate, your information may be transferred to and processed in other jurisdictions. Where required, we implement appropriate safeguards, such as Standard Contractual Clauses approved by the European Commission or equivalent mechanisms, to protect the data.</p>
+            </section>
+
+            <!-- Section 10 -->
+            <section class="policy-section">
+                <h2>10. Your Rights</h2>
+                <p>Depending on your location and applicable law, you may have the following rights regarding your personal information:</p>
+                <ul>
+                    <li>Right to access and receive a copy of your data</li>
+                    <li>Right to rectification of inaccurate or incomplete data</li>
+                    <li>Right to erasure ("right to be forgotten") under certain conditions</li>
+                    <li>Right to restriction of processing</li>
+                    <li>Right to data portability</li>
+                    <li>Right to object to processing based on legitimate interests or for direct marketing</li>
+                    <li>Right to withdraw consent at any time (where processing is based on consent)</li>
+                    <li>Right to opt out of the sale or sharing of personal information (CCPA/CPRA)</li>
+                    <li>Right to non-discrimination for exercising your rights</li>
+                    <li>Right to lodge a complaint with a supervisory authority</li>
+                </ul>
+                <p>To exercise these rights, contact us using the details in Section 13. We will respond in accordance with applicable law and may need to verify your identity. Certain rights may be limited where we have overriding legal or contractual obligations, or where the data relates to confidential client engagements.</p>
+            </section>
+
+            <!-- Section 11 -->
+            <section class="policy-section">
+                <h2>11. Children's Privacy</h2>
+                <p>Our website and services are directed at business professionals and are not intended for individuals under 18 years of age. We do not knowingly collect personal information from children. If we become aware that we have collected such information, we will take steps to delete it promptly.</p>
+            </section>
+
+            <!-- Section 12 -->
+            <section class="policy-section">
+                <h2>12. Changes to This Policy</h2>
+                <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, or legal requirements. The updated version will be posted on this page with a revised "Last Updated" date. Material changes will be communicated by appropriate means, such as a notice on the website or by email where we have your contact details. Continued use of the website or services after the effective date of changes constitutes acceptance of the updated Policy.</p>
+            </section>
+
+            <!-- Section 13 -->
+            <section class="policy-section">
+                <h2>13. Contact Us</h2>
+                <p>If you have questions about this Privacy Policy, wish to exercise your rights, or need to report a concern, please reach out to us directly:</p>
+                
+                <div class="contact-box">
+                    <p><strong>Lomit Revenue Engineering</strong></p>
+                    <p>Direct Email: <a href="mailto:raaidh@lomit.digital">raaidh@lomit.digital</a></p>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">We respond to legitimate privacy inquiries within the timeframes mandated by applicable data protection laws.</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                
+                <div class="footer-info">
+                    <h4>Lomit Revenue Engineering</h4>
+                    <p>We build and deploy systems that scale businesses intelligently. Driven strictly by data, executed with precision.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h5>Headquarters</h5>
+                    <ul class="footer-text-list">
+                        <li>Kandy</li>
+                        <li>Central Province</li>
+                        <li>Sri Lanka</li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2026 Lomit. All rights reserved.</p>
+                
+                <div class="legal-links">
+                    <a href="PP.html" class="active">Privacy Policy</a>
+                    <a href="ToS.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Functional Back Button
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Canvas Starfield with Dynamic Twinkling & Shooting Stars Effect
+        const canvas = document.getElementById('space-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let stars = [];
+        let shootingStars = [];
+
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initStars();
+        }
+
+        class Star {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 1.8 + 0.4;
+                this.alpha = Math.random();
+                this.speed = Math.random() * 0.015 + 0.005;
+                this.increasing = Math.random() > 0.5;
+            }
+
+            update() {
+                if (this.increasing) {
+                    this.alpha += this.speed;
+                    if (this.alpha >= 0.95) this.increasing = false;
+                } else {
+                    this.alpha -= this.speed;
+                    if (this.alpha <= 0.1) this.increasing = true;
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        class ShootingStar {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * (height * 0.5);
+                this.length = Math.random() * 80 + 50;
+                this.speed = Math.random() * 8 + 4;
+                this.angle = Math.PI / 4; // 45 degree angle trajectory
+                this.opacity = 1;
+                this.width = Math.random() * 1.5 + 0.8;
+                this.active = true;
+            }
+
+            update() {
+                this.x += Math.cos(this.angle) * this.speed;
+                this.y += Math.sin(this.angle) * this.speed;
+                this.opacity -= 0.015;
+
+                if (this.opacity <= 0 || this.x > width || this.y > height) {
+                    this.active = false;
+                }
+            }
+
+            draw() {
+                if (!this.active) return;
+
+                const tailX = this.x - Math.cos(this.angle) * this.length;
+                const tailY = this.y - Math.sin(this.angle) * this.length;
+
+                const gradient = ctx.createLinearGradient(this.x, this.y, tailX, tailY);
+                gradient.addColorStop(0, `rgba(168, 85, 247, ${this.opacity})`);
+                gradient.addColorStop(0.3, `rgba(255, 255, 255, ${this.opacity * 0.8})`);
+                gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = this.width;
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(tailX, tailY);
+                ctx.stroke();
+            }
+        }
+
+        function initStars() {
+            stars = [];
+            const count = Math.floor((width * height) / 4000);
+            for (let i = 0; i < count; i++) {
+                stars.push(new Star());
+            }
+        }
+
+        function spawnShootingStar() {
+            if (Math.random() < 0.03 && shootingStars.length < 3) {
+                shootingStars.push(new ShootingStar());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Render Twinkling Stars
+            for (let star of stars) {
+                star.update();
+                star.draw();
+            }
+
+            // Render Shooting Stars
+            spawnShootingStar();
+            for (let i = shootingStars.length - 1; i >= 0; i--) {
+                const ss = shootingStars[i];
+                ss.update();
+                ss.draw();
+                if (!ss.active) {
+                    shootingStars.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        
+        window.onload = function() {
+            resizeCanvas();
+            animate();
+        };
+    </script>
+</body>
+</html>
